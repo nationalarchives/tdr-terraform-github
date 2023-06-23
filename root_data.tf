@@ -69,11 +69,3 @@ data "aws_ssm_parameter" "slack_success_workflow" {
 data "aws_ssm_parameter" "slack_failure_workflow" {
   name = "/mgmt/slack_failure_workflow"
 }
-
-data "aws_s3_bucket" "state_bucket" {
-  bucket = local.github_state_bucket
-}
-
-data "aws_dynamodb_table" "state_lock_table" {
-  name = local.github_state_lock
-}
