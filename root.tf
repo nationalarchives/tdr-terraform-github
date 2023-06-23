@@ -28,11 +28,11 @@ module "global_parameters" {
 
 terraform {
   backend "s3" {
-    bucket         = local.github_state_bucket
+    bucket         = "tdr_terraform_github_state"
     key            = "terraform.state"
     region         = "eu-west-2"
     encrypt        = true
-    dynamodb_table = local.github_state_lock
+    dynamodb_table = "tdr-terraform-github-state-lock"
   }
 }
 #
