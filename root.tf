@@ -1,7 +1,7 @@
 locals {
   github_state_lock   = "tdr-terraform-github-state-lock"
   github_state_bucket = "tdr-terraform-state-github"
-  common_tags = tomap(
+  common_tags         = tomap(
     {
       "Owner"           = "TDR Github",
       "Terraform"       = true,
@@ -13,9 +13,9 @@ locals {
 }
 
 module "common_ssm_parameters" {
-  source      = "./da-terraform-modules/ssm_parameter"
-  common_tags = local.common_tags
-  random_parameters = [
+  source     = "./da-terraform-modules/ssm_parameter"
+  tags       = local.common_tags
+  parameters = [
     {
       name = local.github_access_token_name, description = "The GitHub workflow token", value = "to_be_manually_added", type = "SecureString", tier = "Advanced"
     }
