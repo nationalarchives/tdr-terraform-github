@@ -1,11 +1,11 @@
 locals {
-  backend_state_lock   = "tdr-bootstrap-terraform-state-lock"
-  backend_state_bucket = "tdr-bootstrap-terraform-state"
+  github_state_lock   = "tdr-terraform-github-state-lock"
+  github_state_bucket = "tdr_terraform_github_state"
   common_tags = tomap(
     {
-      "Owner"           = "TDR Backend",
+      "Owner"           = "TDR Github",
       "Terraform"       = true,
-      "TerraformSource" = "https://github.com/nationalarchives/tdr-terraform-backend",
+      "TerraformSource" = "https://github.com/nationalarchives/tdr-terraform-github",
       "CostCentre"      = data.aws_ssm_parameter.cost_centre.value
     }
   )
@@ -28,24 +28,24 @@ module "global_parameters" {
 
 terraform {
   backend "s3" {
-    bucket         = "tdr-bootstrap-terraform-state"
+    bucket         = local.github_state_bucket
     key            = "terraform.state"
     region         = "eu-west-2"
     encrypt        = true
-    dynamodb_table = "tdr-bootstrap-terraform-state-lock"
+    dynamodb_table = local.github_state_lock
   }
 }
-
-//Set up Terraform Backend state
-module "terraform_state" {
-  source = "./modules/state"
-
-  common_tags = local.common_tags
-}
-
-//Set up Terraform Backend statelock
-module "terraform_state_lock" {
-  source = "./modules/state-lock"
-
-  common_tags = local.common_tags
-}
+#
+#//Set up Terraform Backend state
+#module "terraform_state" {
+#  source = "./modules/state"
+#
+#  common_tags = local.common_tags
+#}
+#
+#//Set up Terraform Backend statelock
+#module "terraform_state_lock" {
+#  source = "./modules/state-lock"
+#
+#  common_tags = local.common_tags
+#}
