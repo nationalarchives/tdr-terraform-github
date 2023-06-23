@@ -1,6 +1,6 @@
 locals {
   github_state_lock   = "tdr-terraform-github-state-lock"
-  github_state_bucket = "tdr_terraform_github_state"
+  github_state_bucket = "tdr-terraform-github-state"
   common_tags = tomap(
     {
       "Owner"           = "TDR Github",
@@ -28,7 +28,7 @@ module "global_parameters" {
 
 terraform {
   backend "s3" {
-    bucket         = "tdr_terraform_github_state"
+    bucket         = "tdr-terraform-github-state"
     key            = "terraform.state"
     region         = "eu-west-2"
     encrypt        = true
