@@ -26,3 +26,14 @@ module "github_keycloak_user_management_repository" {
     WORKFLOW_PAT           = module.common_ssm_parameters.params[local.github_access_token_name].value
   }
 }
+
+module "github_reporting_repository" {
+  source          = "./da-terraform-modules/github_repository_secrets"
+  repository_name = "nationalarchives/tdr-reporting"
+  collaborators   = module.global_parameters.collaborators
+  secrets = {
+    MANAGEMENT_ACCOUNT = data.aws_ssm_parameter.mgmt_account_number.value
+    SLACK_WEBHOOK      = data.aws_ssm_parameter.slack_webhook_url.value
+    WORKFLOW_PAT       = module.common_ssm_parameters.params[local.github_access_token_name].value
+  }
+}
