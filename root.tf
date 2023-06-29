@@ -3,6 +3,7 @@ locals {
   github_state_bucket = "tdr-terraform-state-github"
   common_tags = tomap(
     {
+      "Environment"     = local.environment,
       "Owner"           = "TDR Github",
       "Terraform"       = true,
       "TerraformSource" = "https://github.com/nationalarchives/tdr-terraform-github",
@@ -10,6 +11,7 @@ locals {
     }
   )
   github_access_token_name = "/mgmt/github/access_token"
+  environment              = terraform.workspace
 }
 
 module "common_ssm_parameters" {
