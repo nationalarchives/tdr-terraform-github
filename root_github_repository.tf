@@ -14,18 +14,10 @@ locals {
       "TDR_${upper(environment)}_TERRAFORM_EXTERNAL_ID" = module.configuration.terraform_config[environment]["terraform_external_id"]
     }
   }
-  #  workflow_pat_parameter = { name = local.github_access_token_name, description = "The GitHub workflow token", value = "to_be_manually_added", type = "SecureString", tier = "Advanced" }
-  #  common_parameters = local.apply_repository_secrets == 1 ? [local.workflow_pat_parameter] : []
 }
 
-#module "common_ssm_parameters" {
-#  source = "./da-terraform-modules/ssm_parameter"
-#  tags   = local.common_tags
-#  parameters = local.common_parameters
-#}
-
 module "github_keycloak_user_management_repository" {
-  count           = local.apply_repository_secrets
+  count           = local.apply_repository
   source          = "./da-terraform-modules/github_repository_secrets"
   repository_name = "nationalarchives/tdr-keycloak-user-management"
   secrets = {
@@ -37,7 +29,7 @@ module "github_keycloak_user_management_repository" {
 }
 
 module "github_reporting_repository" {
-  count           = local.apply_repository_secrets
+  count           = local.apply_repository
   source          = "./da-terraform-modules/github_repository_secrets"
   repository_name = "nationalarchives/tdr-reporting"
   collaborators   = module.global_parameters.collaborators
