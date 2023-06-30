@@ -157,7 +157,7 @@ module "github_tdr_scripts_environment" {
   }
 }
 
-module "github_scripts_repository" {
+module "github_tdr_scripts_repository" {
   count           = local.apply_environment
   source          = "./da-terraform-modules/github_repository_secrets"
   repository_name = "nationalarchives/tdr-scripts"
