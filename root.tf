@@ -12,16 +12,15 @@ locals {
   )
   github_access_token_name = "/mgmt/github/access_token"
   environment              = terraform.workspace
+  apply_repository_secrets = local.environment == "mgmt" ? 1 : 0
+  workflow_pat_parameter   = { name = local.github_access_token_name, description = "The GitHub workflow token", value = "to_be_manually_added", type = "SecureString", tier = "Advanced" }
+  common_parameters        = local.apply_repository_secrets == 1 ? [local.workflow_pat_parameter] : []
 }
 
 module "common_ssm_parameters" {
-  source = "./da-terraform-modules/ssm_parameter"
-  tags   = local.common_tags
-  parameters = [
-    {
-      name = local.github_access_token_name, description = "The GitHub workflow token", value = "to_be_manually_added", type = "SecureString", tier = "Advanced"
-    }
-  ]
+  source     = "./da-terraform-modules/ssm_parameter"
+  tags       = local.common_tags
+  parameters = local.common_parameters
 }
 
 module "global_parameters" {
