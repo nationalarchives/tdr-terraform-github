@@ -17,6 +17,7 @@ locals {
 }
 
 module "github_keycloak_user_management_repository" {
+  count           = local.apply_repository
   source          = "./da-terraform-modules/github_repository_secrets"
   repository_name = "nationalarchives/tdr-keycloak-user-management"
   secrets = {
@@ -28,6 +29,7 @@ module "github_keycloak_user_management_repository" {
 }
 
 module "github_reporting_repository" {
+  count           = local.apply_repository
   source          = "./da-terraform-modules/github_repository_secrets"
   repository_name = "nationalarchives/tdr-reporting"
   collaborators   = module.global_parameters.collaborators
