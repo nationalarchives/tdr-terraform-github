@@ -1,4 +1,5 @@
 module "github_keycloak_user_management_environment" {
+  count           = local.apply_environment
   source          = "./da-terraform-modules/github_environment_secrets"
   environment     = local.environment
   repository_name = "nationalarchives/tdr-keycloak-user-management"
@@ -10,6 +11,7 @@ module "github_keycloak_user_management_environment" {
 }
 
 module "github_reporting_environment" {
+  count           = local.apply_environment
   source          = "./da-terraform-modules/github_environment_secrets"
   environment     = local.environment
   repository_name = "nationalarchives/tdr-reporting"
