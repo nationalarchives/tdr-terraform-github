@@ -6,7 +6,7 @@ module "github_keycloak_user_management_environment" {
   team_slug       = "transfer-digital-records-admins"
   secrets = {
     TITLE_STAGE    = title(local.environment)
-    ACCOUNT_NUMBER = data.aws_caller_identity.current.account_id
+    ACCOUNT_NUMBER = local.account_id
   }
 }
 
@@ -17,6 +17,6 @@ module "github_reporting_environment" {
   repository_name = "nationalarchives/tdr-reporting"
   team_slug       = "transfer-digital-records-admins"
   secrets = {
-    ACCOUNT_NUMBER = data.aws_caller_identity.current.account_id
+    ACCOUNT_NUMBER = local.account_id
   }
 }
