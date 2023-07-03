@@ -1,8 +1,3 @@
-module "configuration" {
-  source  = "./da-terraform-configurations"
-  project = "tdr"
-}
-
 locals {
   account_secrets = {
     for environment, _ in module.configuration.account_numbers : environment => {
