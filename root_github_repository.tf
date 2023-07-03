@@ -390,14 +390,6 @@ module "github_ecr_scan_repository" {
   }
 }
 
-module "github_ecr_scan_environment" {
-  count           = local.apply_repository
-  source          = "./da-terraform-modules/github_environment_secrets"
-  environment     = "mgmt"
-  repository_name = "nationalarchives/tdr-ecr-scan"
-  team_slug       = "transfer-digital-records-admins"
-}
-
 module "github_file_format_repository" {
   count           = local.apply_repository
   source          = "./da-terraform-modules/github_repository_secrets"
@@ -424,26 +416,6 @@ module "github_file_metadata_repository" {
   }
 }
 
-module "github_grafana_repository" {
-  count           = local.apply_repository
-  source          = "./da-terraform-modules/github_repository_secrets"
-  repository_name = "nationalarchives/tdr-grafana"
-  secrets = {
-    MANAGEMENT_ACCOUNT = data.aws_ssm_parameter.mgmt_account_number.value
-    SLACK_WEBHOOK      = data.aws_ssm_parameter.slack_webhook_url.value
-    WORKFLOW_PAT       = module.common_ssm_parameters.params[local.github_access_token_name].value
-  }
-}
-
-module "github_grafana_environment" {
-  count                 = local.apply_repository
-  source                = "./da-terraform-modules/github_environment_secrets"
-  environment           = "mgmt"
-  repository_name       = "nationalarchives/tdr-grafana"
-  team_slug             = "transfer-digital-records-admins"
-  integration_team_slug = ["transfer-digital-records"]
-}
-
 module "github_notifications_repository" {
   count           = local.apply_repository
   source          = "./da-terraform-modules/github_repository_secrets"
@@ -452,18 +424,6 @@ module "github_notifications_repository" {
     MANAGEMENT_ACCOUNT = data.aws_ssm_parameter.mgmt_account_number.value
     SLACK_WEBHOOK      = data.aws_ssm_parameter.slack_webhook_url.value
     WORKFLOW_PAT       = module.common_ssm_parameters.params[local.github_access_token_name].value
-  }
-}
-
-module "github_notifications_mgmt_environment" {
-  count                 = local.apply_repository
-  source                = "./da-terraform-modules/github_environment_secrets"
-  environment           = "mgmt"
-  repository_name       = "nationalarchives/tdr-notifications"
-  team_slug             = "transfer-digital-records-admins"
-  integration_team_slug = ["transfer-digital-records"]
-  secrets = {
-    ACCOUNT_NUMBER = data.aws_ssm_parameter.mgmt_account_number.value
   }
 }
 
@@ -498,7 +458,6 @@ module "github_signed_cookies_repository" {
     WORKFLOW_PAT       = module.common_ssm_parameters.params[local.github_access_token_name].value
   }
 }
-
 
 module "github_rotate_keycloak_secrets_repository" {
   count           = local.apply_repository
@@ -580,5 +539,23 @@ module "github_statuses_repository" {
     MANAGEMENT_ACCOUNT = data.aws_ssm_parameter.mgmt_account_number.value
     SLACK_WEBHOOK      = data.aws_ssm_parameter.slack_webhook_url.value
     WORKFLOW_PAT       = module.common_ssm_parameters.params[local.github_access_token_name].value
+  }
+}
+
+module "github_terraform_repository" {
+  count           = local.apply_environment
+  source          = "./da-terraform-modules/github_repository_secrets"
+  repository_name = "nationalarchives/tdr-terraform-environments"
+  secrets = {
+    "${upper(local.environment)}_ACCOUNT_NUMBER" = local.account_id
+  }
+}
+
+module "github_tdr_scripts_repository" {
+  count           = local.apply_environment
+  source          = "./da-terraform-modules/github_repository_secrets"
+  repository_name = "nationalarchives/tdr-scripts"
+  secrets = {
+    "${upper(local.environment)}_ACCOUNT_NUMBER" = local.account_id
   }
 }
