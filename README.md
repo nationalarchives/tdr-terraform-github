@@ -16,7 +16,7 @@ Four Terraform Workspaces are used:
 * `staging` workspace: contains the "environment" secrets and variables for the TDR staging environment
 * `prod` workspace: contains the "environment" secrets and variables for the TDR prod environment
 
-The "environment" secrets and variables correspond to the TDR environments (intg, staging, production), these make use of the "intg", "staging", "prod" workspaces
+The "environment" secrets and variables correspond to the all TDR environments (intg, staging, production, management), these make use of the "intg", "staging", "prod", "mgmt" workspaces
 
 The "repository" secrets and variables correspond to the those common across the different TDR environments, these use the "mgmt" workspace
 
