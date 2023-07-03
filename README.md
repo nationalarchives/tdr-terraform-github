@@ -20,6 +20,18 @@ The "environment" secrets and variables correspond to the TDR environments (intg
 
 The "repository" secrets and variables correspond to the those common across the different TDR environments, these use the "mgmt" workspace
 
+## Repository Configuration
+
+The repository requires a set of repository secrets to be configured before it can be used.
+
+These need to be set up manually first as the GitHub actions for the repository will not run without them.
+
+### Repository secrets
+
+* `MANAGEMENT_ACCOUNT`: this value can be found in the TDR management account in the `/mgmt/management_account` SSM parameter
+* `SLACK_WEBHOOK`: this value can be found in the TDR management account in the `/mgmt/slack/webhook` SSM parameter
+* `WORKFLOW_PAT`: this value can be found in the TDR management account in the `/mgmt/workflow_pat` SSM parameter
+
 ## Getting Started
 
 ### Install Terraform locally
