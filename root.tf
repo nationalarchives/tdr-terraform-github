@@ -1,3 +1,8 @@
+module "configuration" {
+  source  = "./da-terraform-configurations"
+  project = "tdr"
+}
+
 locals {
   github_state_lock   = "tdr-terraform-github-state-lock"
   github_state_bucket = "tdr-terraform-state-github"
@@ -12,6 +17,7 @@ locals {
   )
   github_access_token_name      = "/mgmt/github/access_token"
   environment                   = terraform.workspace
+  account_id                    = module.configuration.account_numbers[local.environment]
   apply_repository              = local.environment == "mgmt" ? 1 : 0
   apply_environment             = local.environment != "mgmt" ? 1 : 0
   workflow_pat_parameter        = { name = local.github_access_token_name, description = "The GitHub workflow token", value = "to_be_manually_added", type = "SecureString", tier = "Advanced" }
