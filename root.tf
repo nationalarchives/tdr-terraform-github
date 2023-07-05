@@ -15,6 +15,7 @@ locals {
       "CostCentre"      = data.aws_ssm_parameter.cost_centre.value
     }
   )
+  region                        = "eu-west-2"
   github_access_token_name      = "/mgmt/github/access_token"
   environment                   = terraform.workspace
   account_id                    = module.configuration.account_numbers[local.environment]
