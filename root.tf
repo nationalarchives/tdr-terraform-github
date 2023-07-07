@@ -27,6 +27,14 @@ locals {
   common_parameters             = local.apply_repository == 1 ? local.common_parameters_repository : local.common_parameters_environment
 }
 
+module "github_oidc_provider" {
+  source      = "./da-terraform-modules/openid_provider"
+  audience    = "sts.amazonaws.com"
+  url         = "https://token.actions.githubusercontent.com"
+  tags        = local.common_tags
+  thumbprint_list = ["6938fd4d98bab03faadb97b34396831e3780aea1", "1c58a3a8518e8759bf075b76b750d4f2df264fcd"]
+}
+
 module "common_ssm_parameters" {
   source     = "./da-terraform-modules/ssm_parameter"
   tags       = local.common_tags
