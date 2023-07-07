@@ -275,7 +275,7 @@ module "github_rotate_secrets_environment" {
   repository_name = "nationalarchives/tdr-rotate-keycloak-secrets"
   team_slug       = "transfer-digital-records-admins"
   secrets = {
-    "${upper(local.environment)}_ACCOUNT_NUMBER" = local.account_id
+    ACCOUNT_NUMBER = local.account_id
   }
 }
 
