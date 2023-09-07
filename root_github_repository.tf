@@ -559,3 +559,17 @@ module "github_tdr_scripts_repository" {
     "${upper(local.environment)}_ACCOUNT_NUMBER" = local.account_id
   }
 }
+
+module "github_metadata_validation_repository" {
+  count           = local.apply_repository
+  source          = "./da-terraform-modules/github_repository_secrets"
+  repository_name = "nationalarchives/tdr-metadata-validation"
+  secrets = {
+    WORKFLOW_PAT      = module.common_ssm_parameters.params[local.github_access_token_name].value
+    SLACK_WEBHOOK     = data.aws_ssm_parameter.slack_webhook_url.value
+    GPG_PASSPHRASE    = data.aws_ssm_parameter.gpg_passphrase.value
+    GPG_PRIVATE_KEY   = data.aws_ssm_parameter.gpg_key.value
+    SONATYPE_USERNAME = data.aws_ssm_parameter.sonatype_username.value
+    SONATYPE_PASSWORD = data.aws_ssm_parameter.sonatype_password.value
+  }
+}
