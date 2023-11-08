@@ -70,4 +70,4 @@ data "aws_ssm_parameter" "slack_failure_workflow" {
   name = "/mgmt/slack_failure_workflow"
 }
 
-data "aws_caller_identity" "current" {} //double check this
+data "aws_caller_identity" "current" {}
