@@ -17,6 +17,7 @@ locals {
   )
   github_access_token_name      = "/mgmt/github/access_token"
   akka_licence_token_name       = "/mgmt/akka/licence_token"
+  region                        = "eu-west-2"
   environment                   = terraform.workspace
   account_id                    = module.configuration.account_numbers[local.environment]
   apply_repository              = local.environment == "mgmt" ? 1 : 0

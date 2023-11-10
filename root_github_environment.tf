@@ -331,3 +331,14 @@ module "github_notifications_mgmt_environment" {
     ACCOUNT_NUMBER = data.aws_ssm_parameter.mgmt_account_number.value
   }
 }
+
+module "intg_github_iam_roles_policies" {
+  count = local.apply_environment
+  source = "./modules/iam_environment_roles_policies"
+  providers = {
+    aws = aws.intg
+  }
+  region = local.region
+  account_id = local.account_id
+  environment = local.environment
+}
