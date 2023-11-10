@@ -69,5 +69,3 @@ data "aws_ssm_parameter" "slack_success_workflow" {
 data "aws_ssm_parameter" "slack_failure_workflow" {
   name = "/mgmt/slack_failure_workflow"
 }
-
-data "aws_caller_identity" "current" {}

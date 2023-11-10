@@ -331,3 +331,39 @@ module "github_notifications_mgmt_environment" {
     ACCOUNT_NUMBER = data.aws_ssm_parameter.mgmt_account_number.value
   }
 }
+
+module "intg_github_iam_roles_policies" {
+  count  = local.apply_environment
+  source = "./modules/iam_environment_roles_policies"
+  providers = {
+    aws = aws.intg
+  }
+  region      = local.region
+  account_id  = local.account_id
+  environment = local.environment
+  common_tags = local.common_tags
+}
+
+module "staging_github_iam_roles_policies" {
+  count  = local.apply_environment
+  source = "./modules/iam_environment_roles_policies"
+  providers = {
+    aws = aws.staging
+  }
+  region      = local.region
+  account_id  = local.account_id
+  environment = local.environment
+  common_tags = local.common_tags
+}
+
+module "prod_github_iam_roles_policies" {
+  count  = local.apply_environment
+  source = "./modules/iam_environment_roles_policies"
+  providers = {
+    aws = aws.prod
+  }
+  region      = local.region
+  account_id  = local.account_id
+  environment = local.environment
+  common_tags = local.common_tags
+}
