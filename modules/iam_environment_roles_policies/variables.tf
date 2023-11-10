@@ -1,5 +1,5 @@
-variable "account_id" { }
+variable "account_id" {}
 
-variable "region" { }
+variable "region" {}
 
-variable "environment" { }
+variable "environment" {}

@@ -14,5 +14,5 @@ resource "aws_iam_role" "github_actions_role" {
 
 resource "aws_iam_role_policy_attachment" "github_actions_deploy_lambda_policy_attach" {
   policy_arn = aws_iam_policy.github_actions_deploy_lambda_policy.arn
-  role = aws_iam_role.github_actions_role.id
+  role       = aws_iam_role.github_actions_role.id
 }

@@ -333,12 +333,12 @@ module "github_notifications_mgmt_environment" {
 }
 
 module "intg_github_iam_roles_policies" {
-  count = local.apply_environment
+  count  = local.apply_environment
   source = "./modules/iam_environment_roles_policies"
   providers = {
     aws = aws.intg
   }
-  region = local.region
-  account_id = local.account_id
+  region      = local.region
+  account_id  = local.account_id
   environment = local.environment
 }
