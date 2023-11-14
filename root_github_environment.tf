@@ -333,7 +333,7 @@ module "github_notifications_mgmt_environment" {
 }
 
 module "intg_github_iam_roles_policies" {
-  count  = local.mgmt_apply_environment
+  count  = local.intg_apply
   source = "./modules/iam_environment_roles_policies"
   providers = {
     aws = aws.intg
@@ -345,7 +345,7 @@ module "intg_github_iam_roles_policies" {
 }
 
 module "staging_github_iam_roles_policies" {
-  count  = local.mgmt_apply_environment
+  count  = local.staging_apply
   source = "./modules/iam_environment_roles_policies"
   providers = {
     aws = aws.staging
@@ -357,7 +357,7 @@ module "staging_github_iam_roles_policies" {
 }
 
 module "prod_github_iam_roles_policies" {
-  count  = local.mgmt_apply_environment
+  count  = local.prod_apply
   source = "./modules/iam_environment_roles_policies"
   providers = {
     aws = aws.prod

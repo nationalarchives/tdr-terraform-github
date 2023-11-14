@@ -29,6 +29,9 @@ locals {
   apply_repository         = local.environment == "mgmt" ? 1 : 0
   apply_environment        = local.environment != "mgmt" ? 1 : 0
   mgmt_apply_environment   = local.environment == "mgmt" ? 1 : 0
+  intg_apply               = local.environment == "intg" ? 1 : 0
+  staging_apply            = local.environment == "staging" ? 1 : 0
+  prod_apply               = local.environment == "prod" ? 1 : 0
   workflow_pat_parameter = {
     name = local.github_access_token_name, description = "The GitHub workflow token", value = "to_be_manually_added",
     type = "SecureString", tier = "Advanced"
