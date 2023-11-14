@@ -20,6 +20,12 @@ locals {
   environment              = terraform.workspace
   region                   = "eu-west-2"
   account_id               = module.configuration.account_numbers[local.environment]
+  intg_account_id          = module.configuration.account_numbers[local.intg_environment]
+  intg_environment         = "intg"
+  staging_account_id       = module.configuration.account_numbers[local.staging_environment]
+  staging_environment      = "staging"
+  prod_account_id          = module.configuration.account_numbers[local.prod_environment]
+  prod_environment         = "prod"
   apply_repository         = local.environment == "mgmt" ? 1 : 0
   apply_environment        = local.environment != "mgmt" ? 1 : 0
   mgmt_apply_environment   = local.environment == "mgmt" ? 1 : 0

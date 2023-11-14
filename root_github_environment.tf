@@ -333,37 +333,37 @@ module "github_notifications_mgmt_environment" {
 }
 
 module "intg_github_iam_roles_policies" {
-  count  = local.apply_environment
+  count  = local.mgmt_apply_environment
   source = "./modules/iam_environment_roles_policies"
   providers = {
     aws = aws.intg
   }
   region      = local.region
-  account_id  = local.account_id
-  environment = local.environment
+  account_id  = local.intg_account_id
+  environment = local.intg_environment
   common_tags = local.common_tags
 }
 
 module "staging_github_iam_roles_policies" {
-  count  = local.apply_environment
+  count  = local.mgmt_apply_environment
   source = "./modules/iam_environment_roles_policies"
   providers = {
     aws = aws.staging
   }
   region      = local.region
-  account_id  = local.account_id
-  environment = local.environment
+  account_id  = local.staging_account_id
+  environment = local.staging_environment
   common_tags = local.common_tags
 }
 
 module "prod_github_iam_roles_policies" {
-  count  = local.apply_environment
+  count  = local.mgmt_apply_environment
   source = "./modules/iam_environment_roles_policies"
   providers = {
     aws = aws.prod
   }
   region      = local.region
-  account_id  = local.account_id
-  environment = local.environment
+  account_id  = local.prod_account_id
+  environment = local.prod_environment
   common_tags = local.common_tags
 }
