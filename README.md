@@ -66,7 +66,7 @@ These sub-modules should be cloned into the project:
 
    ```
    [location of project] $ export AWS_PROFILE=management
-   [location of project] $ export GITHUB_TOKEN=[valid token with access to TDR GitHub repos. Can use token from SSM parameter store: /mgmt/github/jenkins-api-key]
+   [location of project] $ export GITHUB_TOKEN=[valid token with access to TDR GitHub repos. Can use your personal developer token from Develoer Settings]
    [location of project] $ export GITHUB_OWNER=nationalarchives
    ```
 
