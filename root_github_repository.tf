@@ -16,7 +16,7 @@ module "github_rotate_personal_access_token_event" {
   source = "./da-terraform-modules/cloudwatch_events"
   event_pattern = templatefile("${path.module}/templates/ssm_parameter_policy_action_pattern.json.tpl", {
     parameter_name = local.github_access_token_name,
-    policy_type    = "ExpirationNotification"
+    policy_type    = "NoChangeNotification"
   })
   sns_topic_event_target_arn = module.configuration.terraform_config[local.environment]["notifications_sns_topic_arn"]
   rule_name                  = "rotate-github-personal-access-token"
