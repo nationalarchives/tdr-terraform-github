@@ -586,3 +586,14 @@ module "github_metadata_validation_repository" {
     SONATYPE_PASSWORD = data.aws_ssm_parameter.sonatype_password.value
   }
 }
+
+module "github_draft_metadata_validator_repository" {
+  count           = local.apply_repository
+  source          = "./da-terraform-modules/github_repository_secrets"
+  repository_name = "nationalarchives/tdr-draft-metadata-validator"
+  secrets = {
+    MANAGEMENT_ACCOUNT = data.aws_ssm_parameter.mgmt_account_number.value
+    WORKFLOW_PAT       = module.common_ssm_parameters.params[local.github_access_token_name].value
+    SLACK_WEBHOOK      = data.aws_ssm_parameter.slack_webhook_url.value
+  }
+}
