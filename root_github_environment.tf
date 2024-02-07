@@ -382,8 +382,8 @@ module "intg_github_iam_testing_roles_policies" {
 }
 
 module "staging_github_iam_testing_roles_policies" {
-  count  = local.staging_apply
-  source = "./modules/iam_environment_testing_roles_policies"
+  count     = local.staging_apply
+  source    = "./modules/iam_environment_testing_roles_policies"
   providers = {
     aws = aws.staging
   }
@@ -392,4 +392,15 @@ module "staging_github_iam_testing_roles_policies" {
   environment                  = local.staging_environment
   common_tags                  = local.common_tags
   internal_buckets_kms_key_arn = local.staging_internal_buckets_kms_key_arn
+}
+  
+  module "github_draft_metadata_validator_environment" {
+  count           = local.apply_environment
+  source          = "./da-terraform-modules/github_environment_secrets"
+  environment     = local.environment
+  repository_name = "nationalarchives/tdr-draft-metadata-validator"
+  team_slug       = "transfer-digital-records-admins"
+  secrets = {
+    ACCOUNT_NUMBER = local.account_id
+  }
 }
