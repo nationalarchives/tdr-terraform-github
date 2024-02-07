@@ -367,3 +367,14 @@ module "prod_github_iam_roles_policies" {
   environment = local.prod_environment
   common_tags = local.common_tags
 }
+
+module "github_draft_metadata_validator_environment" {
+  count           = local.apply_environment
+  source          = "./da-terraform-modules/github_environment_secrets"
+  environment     = local.environment
+  repository_name = "nationalarchives/tdr-draft-metadata-validator"
+  team_slug       = "transfer-digital-records-admins"
+  secrets = {
+    ACCOUNT_NUMBER = local.account_id
+  }
+}
