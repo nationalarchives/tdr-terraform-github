@@ -15,23 +15,25 @@ locals {
       "CostCentre"      = data.aws_ssm_parameter.cost_centre.value
     }
   )
-  github_access_token_name = "/mgmt/github/access_token"
-  akka_licence_token_name  = "/mgmt/akka/licence_token"
-  environment              = terraform.workspace
-  region                   = "eu-west-2"
-  account_id               = module.configuration.account_numbers[local.environment]
-  intg_account_id          = module.configuration.account_numbers[local.intg_environment]
-  intg_environment         = "intg"
-  staging_account_id       = module.configuration.account_numbers[local.staging_environment]
-  staging_environment      = "staging"
-  prod_account_id          = module.configuration.account_numbers[local.prod_environment]
-  prod_environment         = "prod"
-  apply_repository         = local.environment == "mgmt" ? 1 : 0
-  apply_environment        = local.environment != "mgmt" ? 1 : 0
-  mgmt_apply_environment   = local.environment == "mgmt" ? 1 : 0
-  intg_apply               = local.environment == "intg" ? 1 : 0
-  staging_apply            = local.environment == "staging" ? 1 : 0
-  prod_apply               = local.environment == "prod" ? 1 : 0
+  github_access_token_name             = "/mgmt/github/access_token"
+  akka_licence_token_name              = "/mgmt/akka/licence_token"
+  environment                          = terraform.workspace
+  region                               = "eu-west-2"
+  account_id                           = module.configuration.account_numbers[local.environment]
+  intg_account_id                      = module.configuration.account_numbers[local.intg_environment]
+  intg_environment                     = "intg"
+  intg_internal_buckets_kms_key_arn    = module.configuration.terraform_config["intg_internal_buckets_kms_key_arn"]
+  staging_internal_buckets_kms_key_arn = module.configuration.terraform_config["staging_internal_buckets_kms_key_arn"]
+  staging_account_id                   = module.configuration.account_numbers[local.staging_environment]
+  staging_environment                  = "staging"
+  prod_account_id                      = module.configuration.account_numbers[local.prod_environment]
+  prod_environment                     = "prod"
+  apply_repository                     = local.environment == "mgmt" ? 1 : 0
+  apply_environment                    = local.environment != "mgmt" ? 1 : 0
+  mgmt_apply_environment               = local.environment == "mgmt" ? 1 : 0
+  intg_apply                           = local.environment == "intg" ? 1 : 0
+  staging_apply                        = local.environment == "staging" ? 1 : 0
+  prod_apply                           = local.environment == "prod" ? 1 : 0
   workflow_pat_parameter = {
     name = local.github_access_token_name, description = "The GitHub workflow token", value = "to_be_manually_added",
     type = "SecureString", tier = "Advanced"

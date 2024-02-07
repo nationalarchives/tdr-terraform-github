@@ -367,3 +367,29 @@ module "prod_github_iam_roles_policies" {
   environment = local.prod_environment
   common_tags = local.common_tags
 }
+
+module "intg_github_iam_testing_roles_policies" {
+  count  = local.intg_apply
+  source = "./modules/iam_environment_testing_roles_policies"
+  providers = {
+    aws = aws.intg
+  }
+  region                       = local.region
+  account_id                   = local.intg_account_id
+  environment                  = local.intg_environment
+  common_tags                  = local.common_tags
+  internal_buckets_kms_key_arn = local.intg_internal_buckets_kms_key_arn
+}
+
+module "staging_github_iam_testing_roles_policies" {
+  count  = local.staging_apply
+  source = "./modules/iam_environment_testing_roles_policies"
+  providers = {
+    aws = aws.staging
+  }
+  region                       = local.region
+  account_id                   = local.staging_account_id
+  environment                  = local.staging_environment
+  common_tags                  = local.common_tags
+  internal_buckets_kms_key_arn = local.staging_internal_buckets_kms_key_arn
+}

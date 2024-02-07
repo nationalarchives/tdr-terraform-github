@@ -20,6 +20,11 @@
       "Resource": [
         "arn:aws:s3:::tdr-upload-files-${environment}/*"
       ]
+    },
+    {
+      "Effect": "Allow",
+      "Action": "kms:Encrypt",
+      "Resource": ${encryption_keys}
     }
   ]
 }
