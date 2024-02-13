@@ -22,7 +22,7 @@ locals {
   account_id                     = module.configuration.account_numbers[local.environment]
   intg_account_id                = module.configuration.account_numbers[local.intg_environment]
   intg_environment               = "intg"
-  internal_buckets_kms_key_alias = module.configuration.terraform_config["internal_buckets_kms_key_alias"]
+  internal_buckets_kms_key_alias = module.configuration.terraform_config[local.environment]["internal_buckets_kms_key_alias"]
   staging_account_id             = module.configuration.account_numbers[local.staging_environment]
   staging_environment            = "staging"
   prod_account_id                = module.configuration.account_numbers[local.prod_environment]
