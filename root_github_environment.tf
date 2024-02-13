@@ -374,27 +374,27 @@ module "intg_github_iam_testing_roles_policies" {
   providers = {
     aws = aws.intg
   }
-  region                       = local.region
-  account_id                   = local.intg_account_id
-  environment                  = local.intg_environment
-  common_tags                  = local.common_tags
+  region                         = local.region
+  account_id                     = local.intg_account_id
+  environment                    = local.intg_environment
+  common_tags                    = local.common_tags
   internal_buckets_kms_key_alias = local.internal_buckets_kms_key_alias
 }
 
 module "staging_github_iam_testing_roles_policies" {
-  count     = local.staging_apply
-  source    = "./modules/iam_environment_testing_roles_policies"
+  count  = local.staging_apply
+  source = "./modules/iam_environment_testing_roles_policies"
   providers = {
     aws = aws.staging
   }
-  region                       = local.region
-  account_id                   = local.staging_account_id
-  environment                  = local.staging_environment
-  common_tags                  = local.common_tags
+  region                         = local.region
+  account_id                     = local.staging_account_id
+  environment                    = local.staging_environment
+  common_tags                    = local.common_tags
   internal_buckets_kms_key_alias = local.internal_buckets_kms_key_alias
 }
-  
-  module "github_draft_metadata_validator_environment" {
+
+module "github_draft_metadata_validator_environment" {
   count           = local.apply_environment
   source          = "./da-terraform-modules/github_environment_secrets"
   environment     = local.environment
