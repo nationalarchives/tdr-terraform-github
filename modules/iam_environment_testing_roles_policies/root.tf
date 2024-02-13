@@ -5,7 +5,7 @@ module "github_run_e2e_tests_policy" {
   name   = "TDRGithubActionsRunE2ETestsPolicy${title(var.environment)}"
   policy_string = templatefile("${path.module}/templates/iam_policy/github_run_e2e_tests_policy.json.tpl", {
     environment     = var.environment
-    encryption_keys = jsonencode([var.internal_buckets_kms_key_arn])
+    encryption_keys = jsonencode([var.internal_buckets_kms_key_alias])
   })
 }
 
