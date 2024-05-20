@@ -405,7 +405,7 @@ module "github_draft_metadata_validator_environment" {
   }
 }
 
-module "github_draft_metadata_validator_environment" {
+module "github_da-metadata-schema_environment" {
   count           = local.apply_environment
   source          = "./da-terraform-modules/github_environment_secrets"
   environment     = local.environment
