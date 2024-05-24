@@ -404,14 +404,3 @@ module "github_draft_metadata_validator_environment" {
     ACCOUNT_NUMBER = local.account_id
   }
 }
-
-module "github_da-metadata-schema_environment" {
-  count           = local.apply_environment
-  source          = "./da-terraform-modules/github_environment_secrets"
-  environment     = local.environment
-  repository_name = "nationalarchives/da-metadata-schema"
-  team_slug       = "transfer-digital-records-admins"
-  secrets = {
-    ACCOUNT_NUMBER = local.account_id
-  }
-}
