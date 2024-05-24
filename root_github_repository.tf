@@ -597,3 +597,17 @@ module "github_draft_metadata_validator_repository" {
     SLACK_WEBHOOK      = data.aws_ssm_parameter.slack_webhook_url.value
   }
 }
+
+module "github_metadata_schema_repository" {
+  count           = local.apply_repository
+  source          = "./da-terraform-modules/github_repository_secrets"
+  repository_name = "nationalarchives/da-metadata-schema"
+  secrets = {
+    WORKFLOW_PAT      = module.common_ssm_parameters.params[local.github_access_token_name].value
+    SLACK_WEBHOOK     = data.aws_ssm_parameter.slack_webhook_url.value
+    GPG_PASSPHRASE    = data.aws_ssm_parameter.gpg_passphrase.value
+    GPG_PRIVATE_KEY   = data.aws_ssm_parameter.gpg_key.value
+    SONATYPE_USERNAME = data.aws_ssm_parameter.sonatype_username.value
+    SONATYPE_PASSWORD = data.aws_ssm_parameter.sonatype_password.value
+  }
+}
