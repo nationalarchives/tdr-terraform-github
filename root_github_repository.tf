@@ -598,7 +598,7 @@ module "github_draft_metadata_validator_repository" {
   }
 }
 
-module "github_metadata-schema_repository" {
+module "github_metadata_schema_repository" {
   count           = local.apply_repository
   source          = "./da-terraform-modules/github_repository_secrets"
   repository_name = "nationalarchives/da-metadata-schema"
