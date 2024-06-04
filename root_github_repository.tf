@@ -611,3 +611,12 @@ module "github_metadata_schema_repository" {
     SONATYPE_PASSWORD = data.aws_ssm_parameter.sonatype_password.value
   }
 }
+
+module "github_transfer_service_repository" {
+  count           = local.apply_repository
+  source          = "./da-terraform-modules/github_repository_secrets"
+  repository_name = "nationalarchives/tdr-transfer-service"
+  secrets = {
+    MANAGEMENT_ACCOUNT = data.aws_ssm_parameter.mgmt_account_number.value
+  }
+}
