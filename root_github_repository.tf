@@ -618,5 +618,7 @@ module "github_transfer_service_repository" {
   repository_name = "nationalarchives/tdr-transfer-service"
   secrets = {
     MANAGEMENT_ACCOUNT = data.aws_ssm_parameter.mgmt_account_number.value
+    WORKFLOW_PAT       = module.common_ssm_parameters.params[local.github_access_token_name].value
+    SLACK_WEBHOOK      = data.aws_ssm_parameter.slack_webhook_url.value
   }
 }
