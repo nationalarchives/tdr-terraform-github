@@ -1,5 +1,9 @@
 data "aws_caller_identity" "current" {}
 
+module "global_parameters" {
+  source = "../../tdr-configurations/terraform"
+}
+
 module "github_oidc_provider" {
   source          = "../../da-terraform-modules/openid_provider"
   audience        = "sts.amazonaws.com"
@@ -19,7 +23,8 @@ module "github_actions_deploy_lambda_policy" {
 module "github_actions_role" {
   source = "../../da-terraform-modules/iam_role"
   assume_role_policy = templatefile("${path.module}/templates/iam_role/github_assume_role.json.tpl", {
-    account_id = data.aws_caller_identity.current.account_id, repo_name = "tdr-*"
+    account_id = data.aws_caller_identity.current.account_id,
+    repo_names = jsonencode(concat(module.global_parameters.github_tdr_active_repositories, module.global_parameters.github_da_active_repositories))
   })
   tags = var.common_tags
   name = "TDRGithubActionsDeployLambda${title(var.environment)}"
@@ -39,7 +44,8 @@ module "github_update_ecs_policy" {
 module "github_update_ecs_role" {
   source = "../../da-terraform-modules/iam_role"
   assume_role_policy = templatefile("${path.module}/templates/iam_role/github_assume_role.json.tpl", {
-    account_id = data.aws_caller_identity.current.account_id, repo_name = "tdr-"
+    account_id = data.aws_caller_identity.current.account_id,
+    repo_names = jsonencode(concat(module.global_parameters.github_tdr_active_repositories, module.global_parameters.github_da_active_repositories))
   })
   tags = var.common_tags
   name = "TDRGitHubECSUpdateRole${title(var.environment)}"
@@ -59,7 +65,8 @@ module "github_create_db_user_policy" {
 module "github_create_db_user_role" {
   source = "../../da-terraform-modules/iam_role"
   assume_role_policy = templatefile("${path.module}/templates/iam_role/github_assume_role.json.tpl", {
-    account_id = data.aws_caller_identity.current.account_id
+    account_id = data.aws_caller_identity.current.account_id,
+    repo_names = jsonencode(concat(module.global_parameters.github_tdr_active_repositories, module.global_parameters.github_da_active_repositories))
   })
   tags               = var.common_tags
   name               = "TDRGithubActionsInvokeCreateUserLambdaRole${title(var.environment)}"
@@ -80,7 +87,8 @@ module "github_run_file_format_build_policy" {
 module "github_file_format_run_ecs_role" {
   source = "../../da-terraform-modules/iam_role"
   assume_role_policy = templatefile("${path.module}/templates/iam_role/github_assume_role.json.tpl", {
-    account_id = data.aws_caller_identity.current.account_id, repo_name = "tdr-*"
+    account_id = data.aws_caller_identity.current.account_id,
+    repo_names = jsonencode(concat(module.global_parameters.github_tdr_active_repositories, module.global_parameters.github_da_active_repositories))
   })
   tags = var.common_tags
   name = "TDRGithubActionsRunFileFormatECS${title(var.environment)}"
