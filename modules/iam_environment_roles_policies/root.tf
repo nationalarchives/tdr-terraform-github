@@ -16,7 +16,7 @@ module "github_actions_deploy_lambda_policy" {
   source = "../../da-terraform-modules/iam_policy"
   name   = "TDRGithubActionsDeployLambda${title(var.environment)}"
   policy_string = templatefile("${path.module}/templates/iam_policy/deploy_lambda_github_actions.json.tpl", {
-    account_id = data.aws_caller_identity.current.account_id, environment = var.environment, region = var.region
+    account_id = data.aws_caller_identity.current.account_id, environment = var.environment, region = var.region, mgmt_account_id = var.mgmt_account_id
   })
 }
 
