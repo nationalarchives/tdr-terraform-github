@@ -8,7 +8,8 @@
       "Resource": [
         "arn:aws:ecs:${region}:${account_id}:service/keycloak_${environment}/keycloak_service_${environment}",
         "arn:aws:ecs:${region}:${account_id}:service/frontend_${environment}/frontend_service_${environment}",
-        "arn:aws:ecs:${region}:${account_id}:service/consignmentapi_${environment}/consignmentapi_service_${environment}"
+        "arn:aws:ecs:${region}:${account_id}:service/consignmentapi_${environment}/consignmentapi_service_${environment}",
+        "arn:aws:ecs:${region}:${account_id}:service/transferservice_${environment}/transferservice_service_${environment}"
       ]
     }
   ]
