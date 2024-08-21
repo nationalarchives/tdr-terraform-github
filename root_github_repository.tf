@@ -622,3 +622,14 @@ module "github_transfer_service_repository" {
     SLACK_WEBHOOK      = data.aws_ssm_parameter.slack_webhook_url.value
   }
 }
+
+module "github_dataload_processing_repository" {
+  count           = local.apply_repository
+  source          = "./da-terraform-modules/github_repository_secrets"
+  repository_name = "nationalarchives/tdr-dataload-processing"
+  secrets = {
+    MANAGEMENT_ACCOUNT = data.aws_ssm_parameter.mgmt_account_number.value
+    SLACK_WEBHOOK      = data.aws_ssm_parameter.slack_webhook_url.value
+    WORKFLOW_PAT       = module.common_ssm_parameters.params[local.github_access_token_name].value
+  }
+}

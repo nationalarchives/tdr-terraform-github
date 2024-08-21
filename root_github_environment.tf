@@ -418,3 +418,14 @@ module "github_transfer_service_environment" {
     ACCOUNT_NUMBER = local.account_id
   }
 }
+
+module "github_dataload_processing_environment" {
+  count           = local.apply_environment
+  source          = "./da-terraform-modules/github_environment_secrets"
+  environment     = local.environment
+  repository_name = "nationalarchives/tdr-dataload-processing"
+  team_slug       = "transfer-digital-records-admins"
+  secrets = {
+    ACCOUNT_NUMBER = local.account_id
+  }
+}
