@@ -69,3 +69,15 @@ data "aws_ssm_parameter" "slack_success_workflow" {
 data "aws_ssm_parameter" "slack_failure_workflow" {
   name = "/mgmt/slack_failure_workflow"
 }
+
+data "aws_ssm_parameter" "enterprise_gpg_key_id" {
+  name = "/mgmt/github_enterprise/gpg/key_id"
+}
+
+data "aws_ssm_parameter" "enterprise_gpg_private_key" {
+  name = "/mgmt/github_enterprise/gpg/private_key"
+}
+
+data "aws_ssm_parameter" "enterprise_gpg_passphrase" {
+  name = "/mgmt/github_enterprise/gpg/passphrase"
+}
