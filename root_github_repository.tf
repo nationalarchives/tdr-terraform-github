@@ -235,10 +235,10 @@ module "github_aws_utils_repository" {
   source          = "./da-terraform-modules/github_repository_secrets"
   repository_name = "nationalarchives/tdr-aws-utils"
   secrets = {
-    WORKFLOW_PAT      = module.common_ssm_parameters.params[local.github_access_token_name].value
+    WORKFLOW_PAT      = data.aws_ssm_parameter.enterprise_access_token.value
     SLACK_WEBHOOK     = data.aws_ssm_parameter.slack_webhook_url.value
-    GPG_PASSPHRASE    = data.aws_ssm_parameter.gpg_passphrase.value
-    GPG_PRIVATE_KEY   = data.aws_ssm_parameter.gpg_key.value
+    GPG_PASSPHRASE    = data.aws_ssm_parameter.enterprise_gpg_passphrase.value
+    GPG_PRIVATE_KEY   = data.aws_ssm_parameter.enterprise_gpg_private_key.value
     SONATYPE_USERNAME = data.aws_ssm_parameter.sonatype_username.value
     SONATYPE_PASSWORD = data.aws_ssm_parameter.sonatype_password.value
   }

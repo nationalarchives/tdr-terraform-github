@@ -70,6 +70,10 @@ data "aws_ssm_parameter" "slack_failure_workflow" {
   name = "/mgmt/slack_failure_workflow"
 }
 
+data "aws_ssm_parameter" "enterprise_access_token" {
+  name = "/mgmt/github_enterprise/access_token"
+}
+
 data "aws_ssm_parameter" "enterprise_gpg_key_id" {
   name = "/mgmt/github_enterprise/gpg/key_id"
 }
