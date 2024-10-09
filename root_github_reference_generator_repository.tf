@@ -16,6 +16,6 @@ module "github_da_reference_generator_repository" {
   secrets = {
     TDR_MANAGEMENT_ACCOUNT = data.aws_ssm_parameter.mgmt_account_number.value
     TDR_SLACK_WEBHOOK      = data.aws_ssm_parameter.slack_webhook_url.value
-    TDR_WORKFLOW_PAT       = module.common_ssm_parameters.params[local.github_access_token_name].value
+    TDR_WORKFLOW_PAT       = data.aws_ssm_parameter.enterprise_access_token.value
   }
 }
