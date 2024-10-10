@@ -38,10 +38,6 @@ locals {
   intg_apply                            = local.environment == "intg" ? 1 : 0
   staging_apply                         = local.environment == "staging" ? 1 : 0
   prod_apply                            = local.environment == "prod" ? 1 : 0
-  workflow_pat_parameter = {
-    name = local.github_access_token_name, description = "The GitHub workflow token", value = "to_be_manually_added",
-    type = "SecureString", tier = "Advanced"
-  }
   workflow_enterprise_pat_parameter = {
     name = local.github_enterprise_access_token_name, description = "The GitHub Enterprise workflow token", value = "to_be_manually_added",
     type = "SecureString", tier = "Advanced"
@@ -67,7 +63,7 @@ locals {
     type = "SecureString"
   }
   common_parameters_repository = [
-    local.workflow_pat_parameter, local.akka_licence_token_parameter, local.workflow_enterprise_pat_parameter, local.github_enterprise_gpg_passphrase_parameter,
+    local.akka_licence_token_parameter, local.workflow_enterprise_pat_parameter, local.github_enterprise_gpg_passphrase_parameter,
     local.github_enterprise_key_id_parameter, local.github_enterprise_private_key_parameter, local.github_enterprise_public_key_parameter
   ]
   common_parameters_environment = []
