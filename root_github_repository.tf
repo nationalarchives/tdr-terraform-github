@@ -176,7 +176,7 @@ module "github_actions_repository" {
   source          = "./da-terraform-modules/github_repository_secrets"
   repository_name = "nationalarchives/tdr-github-actions"
   secrets = {
-    GPG_KEY_ID      = data.aws_ssm_parameter.gpg_key_id.value
+    GPG_KEY_ID      = data.aws_ssm_parameter.enterprise_gpg_key_id.value
     GPG_PASSPHRASE  = data.aws_ssm_parameter.enterprise_gpg_passphrase.value
     GPG_PRIVATE_KEY = data.aws_ssm_parameter.enterprise_gpg_private_key.value
     WORKFLOW_PAT    = data.aws_ssm_parameter.enterprise_access_token.value
