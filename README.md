@@ -1,6 +1,6 @@
 # tdr-terraform-github
 
-**Important Note**: tdr-terraform-github uses v1.5.0 of Terraform. Ensure that Terraform v1.5.0 is installed before proceeding.
+**Important Note**: tdr-terraform-github uses >= v1.9.8 of Terraform. Ensure that Terraform >= v1.9.8 is installed before proceeding.
 
 This repository contains the Terraform code to create the AWS resources needed to support the TDR Github Actions for the TDR Github repositories
 
