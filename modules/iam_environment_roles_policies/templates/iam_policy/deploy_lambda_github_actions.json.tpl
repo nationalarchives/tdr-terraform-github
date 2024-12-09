@@ -22,7 +22,7 @@
         "arn:aws:lambda:${region}:${account_id}:function:tdr-checksum-v2-${environment}",
         "arn:aws:lambda:${region}:${account_id}:function:tdr-create-bastion-user-${environment}",
         "arn:aws:lambda:${region}:${account_id}:function:tdr-create-db-users-${environment}",
-        "arn:aws:lambda:${region}:${account_id}:function:tdr-create-keycloak-db-user-new-${environment}",
+        "arn:aws:lambda:${region}:${account_id}:function:tdr-create-keycloak-user-${environment}",
         "arn:aws:lambda:${region}:${account_id}:function:tdr-create-keycloak-user-api-${environment}",
         "arn:aws:lambda:${region}:${account_id}:function:tdr-create-keycloak-user-s3-${environment}",
         "arn:aws:lambda:${region}:${account_id}:function:tdr-database-migrations-${environment}",
