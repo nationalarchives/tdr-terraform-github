@@ -98,8 +98,12 @@ module "github_e2e_tests_repository" {
   source          = "./da-terraform-modules/github_repository_secrets"
   repository_name = "nationalarchives/tdr-e2e-tests"
   secrets = {
-    MANAGEMENT_ACCOUNT = data.aws_ssm_parameter.mgmt_account_number.value
-    SLACK_WEBHOOK      = data.aws_ssm_parameter.slack_webhook_url.value
+    MANAGEMENT_ACCOUNT     = data.aws_ssm_parameter.mgmt_account_number.value
+    INTG_ACCOUNT_NUMBER    = data.aws_ssm_parameter.intg_account_number.value
+    STAGING_ACCOUNT_NUMBER = data.aws_ssm_parameter.staging_account_number.value
+    PROD_ACCOUNT_NUMBER    = data.aws_ssm_parameter.prod_account_number.value
+    SLACK_WEBHOOK          = data.aws_ssm_parameter.slack_webhook_url.value
+    WORKFLOW_PAT           = data.aws_ssm_parameter.enterprise_access_token.value
   }
 }
 
