@@ -32,15 +32,6 @@ module "github_consignment_api_environment" {
   }
 }
 
-module "github_e2e_tests_environment" {
-  count           = local.apply_environment
-  source          = "./da-terraform-modules/github_repository_secrets"
-  repository_name = "nationalarchives/tdr-e2e-tests"
-  secrets = {
-    "${upper(local.environment)}_ACCOUNT_NUMBER" = local.account_id
-  }
-}
-
 module "github_transfer_frontend_environment" {
   count           = local.apply_environment
   source          = "./da-terraform-modules/github_environment_secrets"
