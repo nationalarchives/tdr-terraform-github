@@ -649,3 +649,14 @@ module "github_dataload_processing_repository" {
     WORKFLOW_PAT       = data.aws_ssm_parameter.enterprise_access_token.value
   }
 }
+
+module "github_external_event_handling_repository" {
+  count           = local.apply_repository
+  source          = "./da-terraform-modules/github_repository_secrets"
+  repository_name = "nationalarchives/tdr-external-event-handling"
+  secrets = {
+    MANAGEMENT_ACCOUNT = data.aws_ssm_parameter.mgmt_account_number.value
+    SLACK_WEBHOOK      = data.aws_ssm_parameter.slack_webhook_url.value
+    WORKFLOW_PAT       = data.aws_ssm_parameter.enterprise_access_token.value
+  }
+}
