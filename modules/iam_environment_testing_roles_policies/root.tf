@@ -24,6 +24,7 @@ module "github_run_e2e_tests_role" {
   policy_attachments = {
     run_tests_policy = module.github_run_e2e_tests_policy.policy_arn
   }
+  max_session_duration = 14400
 }
 
 module "github_get_e2e_secrets_policy" {
