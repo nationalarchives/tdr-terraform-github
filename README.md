@@ -1,6 +1,6 @@
 # tdr-terraform-github
 
-**Important Note**: tdr-terraform-github uses v1.5.0 of Terraform. Ensure that Terraform v1.5.0 is installed before proceeding.
+**Important Note**: tdr-terraform-github uses >= v1.9.8 of Terraform. Ensure that Terraform >= v1.9.8 is installed before proceeding.
 
 This repository contains the Terraform code to create the AWS resources needed to support the TDR Github Actions for the TDR Github repositories
 
@@ -30,7 +30,7 @@ These need to be set up manually first as the GitHub actions for the repository 
 
 * `MANAGEMENT_ACCOUNT`: this value can be found in the TDR management account in the `/mgmt/management_account` SSM parameter
 * `SLACK_WEBHOOK`: this value can be found in the TDR management account in the `/mgmt/slack/webhook` SSM parameter
-* `WORKFLOW_PAT`: this value can be found in the TDR management account in the `/mgmt/workflow_pat` SSM parameter
+* `WORKFLOW_PAT`: this value can be found in the TDR management account in the `/mgmt/github_enterprise/access_token` SSM parameter
 
 ## Getting Started
 
