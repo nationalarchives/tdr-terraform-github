@@ -3,7 +3,6 @@ locals {
     for environment, _ in module.configuration.account_numbers : environment => {
       "TDR_${upper(environment)}_ACCOUNT_NUMBER"        = module.configuration.account_numbers[environment]
       "TDR_${upper(environment)}_TERRAFORM_ROLE"        = module.configuration.terraform_config[environment]["terraform_role"]
-      "TDR_${upper(environment)}_CUSTODIAN_ROLE"        = module.configuration.terraform_config[environment]["custodian_role"]
       "TDR_${upper(environment)}_STATE_BUCKET"          = module.configuration.terraform_config[environment]["state_bucket"]
       "TDR_${upper(environment)}_DYNAMO_TABLE"          = module.configuration.terraform_config[environment]["dynamo_table"]
       "TDR_${upper(environment)}_TERRAFORM_EXTERNAL_ID" = module.configuration.terraform_config[environment]["terraform_external_id"]
@@ -365,18 +364,6 @@ module "github_export_status_update_repository" {
     WORKFLOW_PAT       = data.aws_ssm_parameter.enterprise_access_token.value
     SLACK_WEBHOOK      = data.aws_ssm_parameter.slack_webhook_url.value
   }
-}
-
-module "github_tna_custodian_repository" {
-  count           = local.apply_repository
-  source          = "./da-terraform-modules/github_repository_secrets"
-  repository_name = "nationalarchives/tna-custodian"
-  secrets = merge(local.account_secrets["intg"], local.account_secrets["staging"], local.account_secrets["prod"], local.account_secrets["mgmt"], {
-    TDR_MANAGEMENT_ACCOUNT = data.aws_ssm_parameter.mgmt_account_number.value
-    TDR_SLACK_WEBHOOK      = data.aws_ssm_parameter.slack_notifications_webhook_url.value
-    TDR_WORKFLOW_PAT       = data.aws_ssm_parameter.enterprise_access_token.value
-    TDR_EMAIL_ADDRESS      = "tdr-secops@nationalarchives.gov.uk"
-  })
 }
 
 module "github_dev_documentation_repository" {
