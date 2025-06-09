@@ -183,15 +183,6 @@ module "github_create_db_users_environment" {
   }
 }
 
-module "github_custodian_environment" {
-  count                 = local.apply_environment
-  source                = "./da-terraform-modules/github_environment_secrets"
-  environment           = "tdr-${local.environment}"
-  repository_name       = "nationalarchives/tna-custodian"
-  team_slug             = "transfer-digital-records-admins"
-  integration_team_slug = ["transfer-digital-records"]
-}
-
 module "github_download_files_environment" {
   count           = local.apply_environment
   source          = "./da-terraform-modules/github_environment_secrets"
