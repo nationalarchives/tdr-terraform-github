@@ -29,6 +29,8 @@
         "arn:aws:lambda:${region}:${account_id}:function:tdr-dataload-processing-${environment}",
         "arn:aws:lambda:${region}:${account_id}:function:tdr-download-files-${environment}",
         "arn:aws:lambda:${region}:${account_id}:function:tdr-draft-metadata-validator-${environment}",
+        "arn:aws:lambda:${region}:${account_id}:function:tdr-draft-metadata-validation-${environment}",
+        "arn:aws:lambda:${region}:${account_id}:function:tdr-draft-metadata-persistence-${environment}",
         "arn:aws:lambda:${region}:${account_id}:function:tdr-export-api-authoriser-${environment}",
         "arn:aws:lambda:${region}:${account_id}:function:tdr-export-status-update-${environment}",
         "arn:aws:lambda:${region}:${account_id}:function:tdr-external-events-handler-${environment}",
