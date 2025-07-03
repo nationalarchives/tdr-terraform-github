@@ -28,6 +28,8 @@
         "arn:aws:lambda:${region}:${account_id}:function:tdr-database-migrations-${environment}",
         "arn:aws:lambda:${region}:${account_id}:function:tdr-dataload-processing-${environment}",
         "arn:aws:lambda:${region}:${account_id}:function:tdr-download-files-${environment}",
+        "arn:aws:lambda:${region}:${account_id}:function:tdr-draft-metadata-checks-${environment}",
+        "arn:aws:lambda:${region}:${account_id}:function:tdr-draft-metadata-persistence-${environment}",
         "arn:aws:lambda:${region}:${account_id}:function:tdr-draft-metadata-validator-${environment}",
         "arn:aws:lambda:${region}:${account_id}:function:tdr-export-api-authoriser-${environment}",
         "arn:aws:lambda:${region}:${account_id}:function:tdr-export-status-update-${environment}",
@@ -45,9 +47,7 @@
         "arn:aws:lambda:${region}:${account_id}:function:tdr-statuses-${environment}",
         "arn:aws:lambda:${region}:${account_id}:function:tdr-yara-av-${environment}",
         "arn:aws:lambda:${region}:${account_id}:function:tdr-yara-av-v2-${environment}",
-        "arn:aws:s3:::tdr-backend-code-mgmt/*",
-        "arn:aws:lambda:${region}:${account_id}:function:tdr-draft-metadata-checks-${environment}",
-        "arn:aws:lambda:${region}:${account_id}:function:tdr-draft-metadata-persistence-${environment}"
+        "arn:aws:s3:::tdr-backend-code-mgmt/*"
       ]
     },
     {
