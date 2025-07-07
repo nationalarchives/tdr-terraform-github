@@ -1,12 +1,14 @@
 # tdr-terraform-github
 
-**Important Note**: tdr-terraform-github uses >= v1.9.8 of Terraform. Ensure that Terraform >= v1.9.8 is installed before proceeding.
+**Important Note**: tdr-terraform-github uses >= v1.12.2 of Terraform. Ensure that Terraform >= v1.12.2 is installed before proceeding.
 
 This repository contains the Terraform code to create the AWS resources needed to support the TDR Github Actions for the TDR Github repositories
 
 The Terraform is divided into two types:
 * *repository*: GitHub Actions repository level secrets and variables
 * *environment*: GitHub Actions environment level secrets and 
+
+There is no GitHub action to deploy this Terraform stack.  You need a laptop.
 
 ## Terraform Workspaces Usage
 
@@ -38,17 +40,18 @@ These need to be set up manually first as the GitHub actions for the repository 
 
 See: https://learn.hashicorp.com/terraform/getting-started/install.html
 
-### Add sub-modules
+### Clone project with sub-modules
 
-Some of the resources created by this project depend on other GitHub repositories and should be added as sub-modules:
+The following submodules are used in this project
+
 * [da-terraform-modules](https://github.com/nationalarchives/da-terraform-modules/)
 * [da-terraform-configurations](https://github.com/nationalarchives/da-terraform-configurations/)
 * [tdr-configurations](https://github.com/nationalarchives/tdr-configurations/)
 
-These sub-modules should be cloned into the project:
+Clone the entire project with:
 
    ```
-   [location of project] $ git clone [sub-module URL]   
+   [location of project] $ git --recurse-submodules git@github.com:nationalarchives/tdr-terraform-github.git   
    ```
 
 ## Running the Project
@@ -57,9 +60,11 @@ These sub-modules should be cloned into the project:
 
    ```
    ... other credentials ...
-   [management]
-   aws_access_key_id = ... management user access key ...
-   aws_secret_access_key = ... management user secret key ...
+   [<a profile that points to management>]
+   sso_account_id  = ... management account number  ...
+   sso_role_name  = ... management role ...
+   ...
+
    ```
 
 2. Run the following command to ensure Terraform uses the correct credentials and environment variables:
