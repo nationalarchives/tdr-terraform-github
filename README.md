@@ -51,7 +51,7 @@ The following submodules are used in this project
 Clone the entire project with:
 
    ```
-   [location of project] $ git --recurse-submodules git@github.com:nationalarchives/tdr-terraform-github.git   
+   [location of project] $ git clone --recurse-submodules git@github.com:nationalarchives/tdr-terraform-github.git   
    ```
 
 ## Running the Project
