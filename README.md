@@ -8,7 +8,7 @@ The Terraform is divided into two types:
 * *repository*: GitHub Actions repository level secrets and variables
 * *environment*: GitHub Actions environment level secrets and 
 
-There is no GitHub action to deploy this Terraform stack.  You need a laptop.
+There is no GitHub action to deploy this Terraform stack.  Deployment should be done via local machine.
 
 ## Terraform Workspaces Usage
 
