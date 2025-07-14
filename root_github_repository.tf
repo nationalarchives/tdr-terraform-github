@@ -626,10 +626,10 @@ module "github_transfer_service_repository" {
   }
 }
 
-module "github_dataload_processing_repository" {
+module "github_aggregate_processing_repository" {
   count           = local.apply_repository
   source          = "./da-terraform-modules/github_repository_secrets"
-  repository_name = "nationalarchives/tdr-dataload-processing"
+  repository_name = "nationalarchives/tdr-aggregate-processing"
   secrets = {
     MANAGEMENT_ACCOUNT = data.aws_ssm_parameter.mgmt_account_number.value
     SLACK_WEBHOOK      = data.aws_ssm_parameter.slack_webhook_url.value
