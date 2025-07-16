@@ -401,11 +401,11 @@ module "github_transfer_service_environment" {
   }
 }
 
-module "github_dataload_processing_environment" {
+module "github_aggregate_processing_environment" {
   count           = local.apply_environment
   source          = "./da-terraform-modules/github_environment_secrets"
   environment     = local.environment
-  repository_name = "nationalarchives/tdr-dataload-processing"
+  repository_name = "nationalarchives/tdr-aggregate-processing"
   team_slug       = "transfer-digital-records-admins"
   secrets = {
     ACCOUNT_NUMBER = local.account_id

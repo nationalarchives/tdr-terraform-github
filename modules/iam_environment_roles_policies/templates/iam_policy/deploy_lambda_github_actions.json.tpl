@@ -15,6 +15,7 @@
       "Resource": [
         "arn:aws:lambda:${region}:${account_id}:event-source-mapping:*",
         "arn:aws:lambda:${region}:${account_id}:function:da-reference-generator-${environment}",
+        "arn:aws:lambda:${region}:${account_id}:function:tdr-aggregate-processing-${environment}",
         "arn:aws:lambda:${region}:${account_id}:function:tdr-api-update-${environment}",
         "arn:aws:lambda:${region}:${account_id}:function:tdr-api-update-v2-${environment}",
         "arn:aws:lambda:${region}:${account_id}:function:tdr-backend-checks-results-${environment}",
@@ -26,7 +27,6 @@
         "arn:aws:lambda:${region}:${account_id}:function:tdr-create-keycloak-user-api-${environment}",
         "arn:aws:lambda:${region}:${account_id}:function:tdr-create-keycloak-user-s3-${environment}",
         "arn:aws:lambda:${region}:${account_id}:function:tdr-database-migrations-${environment}",
-        "arn:aws:lambda:${region}:${account_id}:function:tdr-dataload-processing-${environment}",
         "arn:aws:lambda:${region}:${account_id}:function:tdr-download-files-${environment}",
         "arn:aws:lambda:${region}:${account_id}:function:tdr-draft-metadata-checks-${environment}",
         "arn:aws:lambda:${region}:${account_id}:function:tdr-draft-metadata-persistence-${environment}",
