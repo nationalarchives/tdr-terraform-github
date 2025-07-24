@@ -37,6 +37,7 @@
         "arn:aws:lambda:${region}:${account_id}:function:tdr-file-format-${environment}",
         "arn:aws:lambda:${region}:${account_id}:function:tdr-file-format-v2-${environment}",
         "arn:aws:lambda:${region}:${account_id}:function:tdr-file-upload-data-${environment}",
+        "arn:aws:lambda:${region}:${account_id}:function:tdr-inactive-keycloak-users-${environment}",
         "arn:aws:lambda:${region}:${account_id}:function:tdr-log-data-${environment}",
         "arn:aws:lambda:${region}:${account_id}:function:tdr-notifications-${environment}",
         "arn:aws:lambda:${region}:${account_id}:function:tdr-redacted-files-${environment}",
