@@ -47,6 +47,7 @@
         "arn:aws:lambda:${region}:${account_id}:function:tdr-statuses-${environment}",
         "arn:aws:lambda:${region}:${account_id}:function:tdr-yara-av-${environment}",
         "arn:aws:lambda:${region}:${account_id}:function:tdr-yara-av-v2-${environment}",
+        "arn:aws:lambda:${region}:${account_id}:function:tdr-inactive-keycloak-users-${environment}",
         "arn:aws:s3:::tdr-backend-code-mgmt/*"
       ]
     },
