@@ -38,6 +38,10 @@ data "aws_ssm_parameter" "npm_token" {
   name = "/mgmt/npm_token"
 }
 
+data "aws_ssm_parameter" "npm_granular_token" {
+  name = local.npm_granular_token_name
+}
+
 data "aws_ssm_parameter" "slack_bot_token" {
   name = "/mgmt/slack/bot"
 }
