@@ -34,6 +34,18 @@ module "github_rotate_enterprise_personal_access_token_event" {
   rule_description           = "Notify to rotate github enterprise personal access token"
 }
 
+module "github_rotate_npm_granular_token_event" {
+  count  = local.apply_repository
+  source = "./da-terraform-modules/cloudwatch_events"
+  event_pattern = templatefile("${path.module}/templates/ssm_parameter_policy_action_pattern.json.tpl", {
+    parameter_name = local.npm_granular_token_name,
+    policy_type    = "NoChangeNotification"
+  })
+  sns_topic_event_target_arn = module.configuration.terraform_config[local.environment]["notifications_sns_topic_arn"]
+  rule_name                  = "rotate-npm-token"
+  rule_description           = "Notify to rotate npm token"
+}
+
 module "github_keycloak_user_management_repository" {
   count           = local.apply_repository
   source          = "./da-terraform-modules/github_repository_secrets"

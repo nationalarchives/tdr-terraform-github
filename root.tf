@@ -22,6 +22,7 @@ locals {
   github_enterprise_public_key_name     = "/mgmt/github_enterprise/gpg/public_key"
   github_enterprise_key_id_name         = "/mgmt/github_enterprise/gpg/key_id"
   akka_licence_token_name               = "/mgmt/akka/licence_token"
+  npm_granular_token_name               = "/mgmt/npm_granular_token"
   environment                           = terraform.workspace
   region                                = "eu-west-2"
   account_id                            = module.configuration.account_numbers[local.environment]
@@ -40,6 +41,10 @@ locals {
   prod_apply                            = local.environment == "prod" ? 1 : 0
   workflow_enterprise_pat_parameter = {
     name = local.github_enterprise_access_token_name, description = "The GitHub Enterprise workflow token", value = "to_be_manually_added",
+    type = "SecureString", tier = "Advanced"
+  }
+  npm_granular_token_parameter = {
+    name = local.npm_granular_token_name, description = "NPM granular token", value = "to_be_manually_added",
     type = "SecureString", tier = "Advanced"
   }
   akka_licence_token_parameter = {
@@ -63,7 +68,7 @@ locals {
     type = "SecureString"
   }
   common_parameters_repository = [
-    local.akka_licence_token_parameter, local.workflow_enterprise_pat_parameter, local.github_enterprise_gpg_passphrase_parameter,
+    local.akka_licence_token_parameter, local.workflow_enterprise_pat_parameter, local.npm_granular_token_parameter, local.github_enterprise_gpg_passphrase_parameter,
     local.github_enterprise_key_id_parameter, local.github_enterprise_private_key_parameter, local.github_enterprise_public_key_parameter
   ]
   common_parameters_environment = []
