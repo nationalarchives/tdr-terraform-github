@@ -4,8 +4,6 @@ module "configuration" {
 }
 
 locals {
-  github_state_lock   = "tdr-terraform-github-state-lock"
-  github_state_bucket = "tdr-terraform-state-github"
   common_tags = tomap(
     {
       "Environment"     = local.environment,

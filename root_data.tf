@@ -34,10 +34,6 @@ data "aws_ssm_parameter" "slack_pr_monitor_url" {
   name = "/mgmt/pr_monitor/slack/webhook"
 }
 
-data "aws_ssm_parameter" "npm_token" {
-  name = "/mgmt/npm_token"
-}
-
 data "aws_ssm_parameter" "npm_granular_token" {
   name = local.npm_granular_token_name
 }
