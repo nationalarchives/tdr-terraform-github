@@ -204,7 +204,7 @@ module "github_generated_graphql_repository" {
   repository_name = "nationalarchives/tdr-generated-graphql"
   secrets = {
     WORKFLOW_PAT      = data.aws_ssm_parameter.enterprise_access_token.value
-    NPM_TOKEN         = data.aws_ssm_parameter.npm_token.value
+    NPM_TOKEN         = data.aws_ssm_parameter.npm_granular_token.value
     SLACK_WEBHOOK     = data.aws_ssm_parameter.slack_webhook_url.value
     GPG_PASSPHRASE    = data.aws_ssm_parameter.enterprise_gpg_passphrase.value
     GPG_PRIVATE_KEY   = data.aws_ssm_parameter.enterprise_gpg_private_key.value
@@ -438,7 +438,7 @@ module "github_file_metadata_repository" {
   secrets = {
     SLACK_WEBHOOK   = data.aws_ssm_parameter.slack_webhook_url.value
     WORKFLOW_PAT    = data.aws_ssm_parameter.enterprise_access_token.value
-    NPM_TOKEN       = data.aws_ssm_parameter.npm_token.value
+    NPM_TOKEN       = data.aws_ssm_parameter.npm_granular_token.value
     GPG_PASSPHRASE  = data.aws_ssm_parameter.enterprise_gpg_passphrase.value
     GPG_PRIVATE_KEY = data.aws_ssm_parameter.enterprise_gpg_private_key.value
   }
@@ -506,7 +506,7 @@ module "github_components_repository" {
     MANAGEMENT_ACCOUNT = data.aws_ssm_parameter.mgmt_account_number.value
     SLACK_WEBHOOK      = data.aws_ssm_parameter.slack_webhook_url.value
     WORKFLOW_PAT       = data.aws_ssm_parameter.enterprise_access_token.value
-    NPM_TOKEN          = data.aws_ssm_parameter.npm_token.value
+    NPM_TOKEN          = data.aws_ssm_parameter.npm_granular_token.value
     GPG_PASSPHRASE     = data.aws_ssm_parameter.enterprise_gpg_passphrase.value
     GPG_PRIVATE_KEY    = data.aws_ssm_parameter.enterprise_gpg_private_key.value
   }
