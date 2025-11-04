@@ -294,20 +294,6 @@ module "github_antivirus_repository" {
   }
 }
 
-module "github_backend_checks_performance_repository" {
-  count           = local.apply_repository
-  source          = "./da-terraform-modules/github_repository_secrets"
-  repository_name = "nationalarchives/tdr-backend-check-performance"
-  secrets = {
-    MANAGEMENT_ACCOUNT = data.aws_ssm_parameter.mgmt_account_number.value
-    SANDBOX_ACCOUNT    = data.aws_ssm_parameter.sandbox_account_number.value
-    WORKFLOW_PAT       = data.aws_ssm_parameter.enterprise_access_token.value
-    SLACK_WEBHOOK      = data.aws_ssm_parameter.slack_webhook_url.value
-    GPG_PASSPHRASE     = data.aws_ssm_parameter.enterprise_gpg_passphrase.value
-    GPG_PRIVATE_KEY    = data.aws_ssm_parameter.enterprise_gpg_private_key.value
-  }
-}
-
 module "github_scripts_repository" {
   count           = local.apply_repository
   source          = "./da-terraform-modules/github_repository_secrets"
