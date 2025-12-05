@@ -423,3 +423,36 @@ module "github_external_event_handling_environment" {
   }
 }
 
+module "github_commons_environment" {
+  count           = local.apply_environment
+  source          = "./da-terraform-modules/github_environment_secrets"
+  environment     = local.environment
+  repository_name = "nationalarchives/tdr-commons"
+  team_slug       = "transfer-digital-records-admins"
+  secrets = {
+    ACCOUNT_NUMBER = local.account_id
+  }
+}
+
+module "github_transfer_load_environment" {
+  count           = local.apply_environment
+  source          = "./da-terraform-modules/github_environment_secrets"
+  environment     = local.environment
+  repository_name = "nationalarchives/tdr-transfer-load"
+  team_slug       = "transfer-digital-records-admins"
+  secrets = {
+    ACCOUNT_NUMBER = local.account_id
+  }
+}
+
+module "github_file_checks_environment" {
+  count           = local.apply_environment
+  source          = "./da-terraform-modules/github_environment_secrets"
+  environment     = local.environment
+  repository_name = "nationalarchives/tdr-file-checks"
+  team_slug       = "transfer-digital-records-admins"
+  secrets = {
+    ACCOUNT_NUMBER = local.account_id
+  }
+}
+
