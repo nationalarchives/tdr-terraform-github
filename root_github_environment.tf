@@ -423,11 +423,11 @@ module "github_external_event_handling_environment" {
   }
 }
 
-module "github_commons_environment" {
+module "github_common_utils_environment" {
   count           = local.apply_environment
   source          = "./da-terraform-modules/github_environment_secrets"
   environment     = local.environment
-  repository_name = "nationalarchives/tdr-commons"
+  repository_name = "nationalarchives/tdr-common-utils"
   team_slug       = "transfer-digital-records-admins"
   secrets = {
     ACCOUNT_NUMBER = local.account_id
