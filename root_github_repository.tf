@@ -646,10 +646,10 @@ module "github_external_event_handling_repository" {
   }
 }
 
-module "github_commons_repository" {
+module "github_common_utils_repository" {
   count           = local.apply_repository
   source          = "./da-terraform-modules/github_repository_secrets"
-  repository_name = "nationalarchives/tdr-commons"
+  repository_name = "nationalarchives/tdr-common-utils"
   secrets = {
     MANAGEMENT_ACCOUNT = data.aws_ssm_parameter.mgmt_account_number.value
     SLACK_WEBHOOK      = data.aws_ssm_parameter.slack_webhook_url.value
