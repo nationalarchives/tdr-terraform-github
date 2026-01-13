@@ -100,7 +100,6 @@ module "github_consignment_api_repository" {
     MANAGEMENT_ACCOUNT = data.aws_ssm_parameter.mgmt_account_number.value
     WORKFLOW_PAT       = data.aws_ssm_parameter.enterprise_access_token.value
     SLACK_WEBHOOK      = data.aws_ssm_parameter.slack_webhook_url.value
-    AKKA_TOKEN         = module.common_ssm_parameters.params[local.akka_licence_token_name].value
   }
 }
 
