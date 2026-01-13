@@ -61,6 +61,7 @@ locals {
     type = "SecureString"
   }
   common_parameters_repository = [
+    local.workflow_enterprise_pat_parameter, local.npm_granular_token_parameter, local.github_enterprise_gpg_passphrase_parameter,
     local.github_enterprise_key_id_parameter, local.github_enterprise_private_key_parameter, local.github_enterprise_public_key_parameter
   ]
   common_parameters_environment = []
