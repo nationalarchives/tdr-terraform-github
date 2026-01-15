@@ -25,6 +25,8 @@ locals {
   account_id                            = module.configuration.account_numbers[local.environment]
   intg_account_id                       = module.configuration.account_numbers[local.intg_environment]
   intg_environment                      = "intg"
+  dev_account_id                        = module.configuration.account_numbers[local.dev_environment]
+  dev_environment                       = "dev"
   internal_buckets_kms_key_alias        = module.configuration.terraform_config[local.environment]["internal_buckets_kms_key_alias"]
   staging_account_id                    = module.configuration.account_numbers[local.staging_environment]
   staging_environment                   = "staging"
@@ -36,6 +38,7 @@ locals {
   intg_apply                            = local.environment == "intg" ? 1 : 0
   staging_apply                         = local.environment == "staging" ? 1 : 0
   prod_apply                            = local.environment == "prod" ? 1 : 0
+  dev_apply                            = local.environment == "dev" ? 1 : 0
   workflow_enterprise_pat_parameter = {
     name = local.github_enterprise_access_token_name, description = "The GitHub Enterprise workflow token", value = "to_be_manually_added",
     type = "SecureString", tier = "Advanced"
