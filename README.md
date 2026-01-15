@@ -67,6 +67,16 @@ Clone the entire project with:
 
    ```
 
+   For the dev environment, no dedicated Admin Role has been created to be assumed by the dev aws provider, instead this too should be added as a profile to `~/.aws/credentials` (or `~/.aws/config` if you are using `aws sso login`):
+   
+   ```
+   [profile dev]
+   ...
+   sso_account_id             = dev account number
+   sso_role_name              = AdministratorAccess
+   ...
+   ```
+
 2. Run the following command to ensure Terraform uses the correct credentials and environment variables:
 
    ```

@@ -327,6 +327,19 @@ module "intg_github_iam_roles_policies" {
   mgmt_account_id = data.aws_ssm_parameter.mgmt_account_number.value
 }
 
+module "dev_github_iam_roles_policies" {
+  count  = local.dev_apply
+  source = "./modules/iam_environment_roles_policies"
+  providers = {
+    aws = aws.dev
+  }
+  region          = local.region
+  account_id      = local.dev_account_id
+  environment     = local.dev_environment
+  common_tags     = local.common_tags
+  mgmt_account_id = data.aws_ssm_parameter.mgmt_account_number.value
+}
+
 module "staging_github_iam_roles_policies" {
   count  = local.staging_apply
   source = "./modules/iam_environment_roles_policies"
