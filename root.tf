@@ -38,7 +38,7 @@ locals {
   intg_apply                            = local.environment == "intg" ? 1 : 0
   staging_apply                         = local.environment == "staging" ? 1 : 0
   prod_apply                            = local.environment == "prod" ? 1 : 0
-  dev_apply                            = local.environment == "dev" ? 1 : 0
+  dev_apply                             = local.environment == "dev" ? 1 : 0
   workflow_enterprise_pat_parameter = {
     name = local.github_enterprise_access_token_name, description = "The GitHub Enterprise workflow token", value = "to_be_manually_added",
     type = "SecureString", tier = "Advanced"
