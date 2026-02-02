@@ -653,6 +653,10 @@ module "github_common_utils_repository" {
     MANAGEMENT_ACCOUNT = data.aws_ssm_parameter.mgmt_account_number.value
     SLACK_WEBHOOK      = data.aws_ssm_parameter.slack_webhook_url.value
     WORKFLOW_PAT       = data.aws_ssm_parameter.enterprise_access_token.value
+    GPG_PASSPHRASE     = data.aws_ssm_parameter.enterprise_gpg_passphrase.value
+    GPG_PRIVATE_KEY    = data.aws_ssm_parameter.enterprise_gpg_private_key.value
+    SONATYPE_USERNAME  = data.aws_ssm_parameter.sonatype_username.value
+    SONATYPE_PASSWORD  = data.aws_ssm_parameter.sonatype_password.value
   }
 }
 
