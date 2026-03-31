@@ -34,6 +34,7 @@
         "arn:aws:lambda:${region}:${account_id}:function:tdr-export-api-authoriser-${environment}",
         "arn:aws:lambda:${region}:${account_id}:function:tdr-export-status-update-${environment}",
         "arn:aws:lambda:${region}:${account_id}:function:tdr-external-events-handler-${environment}",
+        "arn:aws:lambda:${region}:${account_id}:function:tdr-file-checks-${environment}",
         "arn:aws:lambda:${region}:${account_id}:function:tdr-file-format-${environment}",
         "arn:aws:lambda:${region}:${account_id}:function:tdr-file-format-v2-${environment}",
         "arn:aws:lambda:${region}:${account_id}:function:tdr-file-upload-data-${environment}",
