@@ -56,28 +56,49 @@ Clone the entire project with:
 
 ## Running the Project
 
-1. Add AWS credentials to the local credential store (~/.aws/credentials) for the TDR management account:
+1. Add AWS credentials to the local configuration file (`~/.aws/credentials`) for management and all other TDR accounts. The role must of course have enough permissions to deploy this stack. E.g.:
 
    ```
-   ... other credentials ...
-   [<a profile that points to management>]
-   sso_account_id  = ... management account number  ...
-   sso_role_name  = ... management role ...
    ...
+   [profile <PROFILE_NAME_FOR_MANAGEMENT>]
+   sso_account_id  = 1234567890
+   sso_role_name   = <ROLE_NAME>
 
-   ```
-
-   For the dev environment, no dedicated Admin Role has been created to be assumed by the dev aws provider, instead this too should be added as a profile to `~/.aws/credentials` (or `~/.aws/config` if you are using `aws sso login`):
+   [profile <PROFILE_NAME_FOR_TDR_DEV>]
+   sso_account_id  = 098765431
+   sso_role_name   = <ROLE_NAME>
    
-   ```
-   [profile dev]
-   ...
-   sso_account_id             = dev account number
-   sso_role_name              = AdministratorAccess
+   [profile <PROFILE_NAME_FOR_TDR_INTG>]
+   sso_account_id  = 098765431
+   sso_role_name   = <ROLE_NAME>
+   
+   [profile <PROFILE_NAME_FOR_TDR_STAGING>]
+   sso_account_id  = 098765431
+   sso_role_name   = <ROLE_NAME>
+   
+   [profile <PROFILE_NAME_FOR_TDR_PROD>]
+   sso_account_id  = 098765431
+   sso_role_name   = <ROLE_NAME>
    ...
    ```
 
-2. Run the following command to ensure Terraform uses the correct credentials and environment variables:
+2. Edit `root_provider.tf` and set a corresponding profile for each provider (management / dev / intg / staging / prod). Note the first provider without an alias must be the management account. E.g.
+
+   ```
+   provider "aws" {
+    region  = "eu-west-2"
+    profile = "<PROFILE_NAME_FOR_MANAGEMENT>"
+   }
+
+   provider "aws" {
+    alias   = "dev"
+    region  = "eu-west-2"
+    profile = "<PROFILE_NAME_FOR_TDR_DEV>"
+   }
+   ... etc ..
+   ```
+
+3. Run the following command to ensure Terraform uses the correct credentials and environment variables:
 
    ```
    [location of project] $ export AWS_PROFILE=management
@@ -85,7 +106,7 @@ Clone the entire project with:
    [location of project] $ export GITHUB_OWNER=nationalarchives
    ```
 
-3. Select the *correct* Terraform workspace.
+4. Select the *correct* Terraform workspace.
 * To apply "repository" secrets and variables select the `mgmt` workspace:
    ```
    [location of project] $ terraform workspace select mgmt   
@@ -94,7 +115,7 @@ Clone the entire project with:
    ```
    [location of project] $ terraform workspace select {intg or staging or prod} 
    ```
-4. In the correct Terraform workspace run the `plan` or `apply` Terraform commands as required
+5. In the correct Terraform workspace run the `plan` or `apply` Terraform commands as required
   ```
    [location of project] $ terraform {plan or apply} 
    ```
