@@ -105,17 +105,6 @@ module "github_e2e_tests_repository" {
   }
 }
 
-module "github_checksum_repository" {
-  count           = local.apply_repository
-  source          = "./da-terraform-modules/github_repository_secrets"
-  repository_name = "nationalarchives/tdr-checksum"
-  secrets = {
-    MANAGEMENT_ACCOUNT = data.aws_ssm_parameter.mgmt_account_number.value
-    SLACK_WEBHOOK      = data.aws_ssm_parameter.slack_webhook_url.value
-    WORKFLOW_PAT       = data.aws_ssm_parameter.enterprise_access_token.value
-  }
-}
-
 module "github_terraform_environments_repository" {
   count           = local.apply_repository
   source          = "./da-terraform-modules/github_repository_secrets"
@@ -270,17 +259,6 @@ module "github_consignment_export_repository" {
   }
 }
 
-module "github_antivirus_repository" {
-  count           = local.apply_repository
-  source          = "./da-terraform-modules/github_repository_secrets"
-  repository_name = "nationalarchives/tdr-antivirus"
-  secrets = {
-    MANAGEMENT_ACCOUNT = data.aws_ssm_parameter.mgmt_account_number.value
-    WORKFLOW_PAT       = data.aws_ssm_parameter.enterprise_access_token.value
-    SLACK_WEBHOOK      = data.aws_ssm_parameter.slack_webhook_url.value
-  }
-}
-
 module "github_scripts_repository" {
   count           = local.apply_repository
   source          = "./da-terraform-modules/github_repository_secrets"
@@ -388,19 +366,6 @@ module "github_ecr_scan_repository" {
     MANAGEMENT_ACCOUNT = data.aws_ssm_parameter.mgmt_account_number.value
     SLACK_WEBHOOK      = data.aws_ssm_parameter.slack_webhook_url.value
     WORKFLOW_PAT       = data.aws_ssm_parameter.enterprise_access_token.value
-  }
-}
-
-module "github_file_format_repository" {
-  count           = local.apply_repository
-  source          = "./da-terraform-modules/github_repository_secrets"
-  repository_name = "nationalarchives/tdr-file-format"
-  secrets = {
-    MANAGEMENT_ACCOUNT = data.aws_ssm_parameter.mgmt_account_number.value
-    SLACK_WEBHOOK      = data.aws_ssm_parameter.slack_webhook_url.value
-    WORKFLOW_PAT       = data.aws_ssm_parameter.enterprise_access_token.value
-    GPG_PASSPHRASE     = data.aws_ssm_parameter.enterprise_gpg_passphrase.value
-    GPG_PRIVATE_KEY    = data.aws_ssm_parameter.enterprise_gpg_private_key.value
   }
 }
 

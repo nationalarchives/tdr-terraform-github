@@ -19,8 +19,6 @@
         "arn:aws:lambda:${region}:${account_id}:function:tdr-api-update-${environment}",
         "arn:aws:lambda:${region}:${account_id}:function:tdr-api-update-v2-${environment}",
         "arn:aws:lambda:${region}:${account_id}:function:tdr-backend-checks-results-${environment}",
-        "arn:aws:lambda:${region}:${account_id}:function:tdr-checksum-${environment}",
-        "arn:aws:lambda:${region}:${account_id}:function:tdr-checksum-v2-${environment}",
         "arn:aws:lambda:${region}:${account_id}:function:tdr-create-bastion-user-${environment}",
         "arn:aws:lambda:${region}:${account_id}:function:tdr-create-db-users-${environment}",
         "arn:aws:lambda:${region}:${account_id}:function:tdr-create-keycloak-user-${environment}",
@@ -35,8 +33,6 @@
         "arn:aws:lambda:${region}:${account_id}:function:tdr-export-status-update-${environment}",
         "arn:aws:lambda:${region}:${account_id}:function:tdr-external-events-handler-${environment}",
         "arn:aws:lambda:${region}:${account_id}:function:tdr-file-checks-${environment}",
-        "arn:aws:lambda:${region}:${account_id}:function:tdr-file-format-${environment}",
-        "arn:aws:lambda:${region}:${account_id}:function:tdr-file-format-v2-${environment}",
         "arn:aws:lambda:${region}:${account_id}:function:tdr-file-upload-data-${environment}",
         "arn:aws:lambda:${region}:${account_id}:function:tdr-inactive-keycloak-users-${environment}",
         "arn:aws:lambda:${region}:${account_id}:function:tdr-log-data-${environment}",
@@ -47,8 +43,6 @@
         "arn:aws:lambda:${region}:${account_id}:function:tdr-service-unavailable-${environment}",
         "arn:aws:lambda:${region}:${account_id}:function:tdr-signed-cookies-${environment}",
         "arn:aws:lambda:${region}:${account_id}:function:tdr-statuses-${environment}",
-        "arn:aws:lambda:${region}:${account_id}:function:tdr-yara-av-${environment}",
-        "arn:aws:lambda:${region}:${account_id}:function:tdr-yara-av-v2-${environment}",
         "arn:aws:s3:::tdr-backend-code-mgmt/*"
       ]
     },
