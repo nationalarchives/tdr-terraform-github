@@ -66,17 +66,6 @@ module "github_terraform_environment" {
   }
 }
 
-module "github_checksum_environment" {
-  count           = local.apply_environment
-  source          = "./da-terraform-modules/github_environment_secrets"
-  environment     = local.environment
-  repository_name = "nationalarchives/tdr-checksum"
-  team_slug       = "transfer-digital-records-admins"
-  secrets = {
-    ACCOUNT_NUMBER = local.account_id
-  }
-}
-
 module "github_db_migrations_environment" {
   count           = local.apply_environment
   source          = "./da-terraform-modules/github_environment_secrets"
@@ -93,17 +82,6 @@ module "github_auth_server_environment" {
   source          = "./da-terraform-modules/github_environment_secrets"
   environment     = local.environment
   repository_name = "nationalarchives/tdr-auth-server"
-  team_slug       = "transfer-digital-records-admins"
-  secrets = {
-    ACCOUNT_NUMBER = local.account_id
-  }
-}
-
-module "github_antivirus_server_environment" {
-  count           = local.apply_environment
-  source          = "./da-terraform-modules/github_environment_secrets"
-  environment     = local.environment
-  repository_name = "nationalarchives/tdr-antivirus"
   team_slug       = "transfer-digital-records-admins"
   secrets = {
     ACCOUNT_NUMBER = local.account_id
@@ -188,17 +166,6 @@ module "github_download_files_environment" {
   source          = "./da-terraform-modules/github_environment_secrets"
   environment     = local.environment
   repository_name = "nationalarchives/tdr-download-files"
-  team_slug       = "transfer-digital-records-admins"
-  secrets = {
-    ACCOUNT_NUMBER = local.account_id
-  }
-}
-
-module "github_file_format_environment" {
-  count           = local.apply_environment
-  source          = "./da-terraform-modules/github_environment_secrets"
-  environment     = local.environment
-  repository_name = "nationalarchives/tdr-file-format"
   team_slug       = "transfer-digital-records-admins"
   secrets = {
     ACCOUNT_NUMBER = local.account_id
