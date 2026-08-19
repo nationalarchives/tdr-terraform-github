@@ -296,17 +296,6 @@ module "github_api_update_repository" {
   }
 }
 
-module "github_export_authoriser_repository" {
-  count           = local.apply_repository
-  source          = "./da-terraform-modules/github_repository_secrets"
-  repository_name = "nationalarchives/tdr-consignment-export-authoriser"
-  secrets = {
-    MANAGEMENT_ACCOUNT = data.aws_ssm_parameter.mgmt_account_number.value
-    WORKFLOW_PAT       = data.aws_ssm_parameter.enterprise_access_token.value
-    SLACK_WEBHOOK      = data.aws_ssm_parameter.slack_webhook_url.value
-  }
-}
-
 module "github_create_db_users_repository" {
   count           = local.apply_repository
   source          = "./da-terraform-modules/github_repository_secrets"

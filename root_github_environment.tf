@@ -139,17 +139,6 @@ module "github_export_status_update_update_environment" {
   }
 }
 
-module "github_export_authoriser_environment" {
-  count           = local.apply_environment
-  source          = "./da-terraform-modules/github_environment_secrets"
-  environment     = local.environment
-  repository_name = "nationalarchives/tdr-consignment-export-authoriser"
-  team_slug       = "transfer-digital-records-admins"
-  secrets = {
-    ACCOUNT_NUMBER = local.account_id
-  }
-}
-
 module "github_create_db_users_environment" {
   count           = local.apply_environment
   source          = "./da-terraform-modules/github_environment_secrets"
