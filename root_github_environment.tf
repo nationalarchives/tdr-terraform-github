@@ -438,3 +438,18 @@ module "github_file_checks_environment" {
   }
 }
 
+module "github_e2e_tests_environment" {
+  # E2E tests never run against prod, so no environment/secret is needed there
+  count           = local.apply_environment == 1 && local.environment != "prod" ? 1 : 0
+  source          = "./da-terraform-modules/github_environment_secrets"
+  environment     = local.environment
+  repository_name = "nationalarchives/tdr-e2e-tests"
+  # E2E tests run automatically and unattended after every deploy, so this
+  # repository's environments should never require manual reviewer approval
+  # (unlike the deploy workflow environments above, which are reviewed).
+  team_slug = ""
+  secrets = {
+    ACCOUNT_NUMBER = local.account_id
+  }
+}
+
