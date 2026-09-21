@@ -358,19 +358,6 @@ module "github_ecr_scan_repository" {
   }
 }
 
-module "github_file_metadata_repository" {
-  count           = local.apply_repository
-  source          = "./da-terraform-modules/github_repository_secrets"
-  repository_name = "nationalarchives/tdr-file-metadata"
-  secrets = {
-    SLACK_WEBHOOK   = data.aws_ssm_parameter.slack_webhook_url.value
-    WORKFLOW_PAT    = data.aws_ssm_parameter.enterprise_access_token.value
-    NPM_TOKEN       = data.aws_ssm_parameter.npm_granular_token.value
-    GPG_PASSPHRASE  = data.aws_ssm_parameter.enterprise_gpg_passphrase.value
-    GPG_PRIVATE_KEY = data.aws_ssm_parameter.enterprise_gpg_private_key.value
-  }
-}
-
 module "github_notifications_repository" {
   count           = local.apply_repository
   source          = "./da-terraform-modules/github_repository_secrets"
