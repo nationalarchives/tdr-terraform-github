@@ -19,7 +19,6 @@ locals {
   github_enterprise_private_key_name    = "/mgmt/github_enterprise/gpg/private_key"
   github_enterprise_public_key_name     = "/mgmt/github_enterprise/gpg/public_key"
   github_enterprise_key_id_name         = "/mgmt/github_enterprise/gpg/key_id"
-  npm_granular_token_name               = "/mgmt/npm_granular_token"
   environment                           = terraform.workspace
   region                                = "eu-west-2"
   account_id                            = module.configuration.account_numbers[local.environment]
@@ -43,10 +42,6 @@ locals {
     name = local.github_enterprise_access_token_name, description = "The GitHub Enterprise workflow token", value = "to_be_manually_added",
     type = "SecureString", tier = "Advanced"
   }
-  npm_granular_token_parameter = {
-    name = local.npm_granular_token_name, description = "NPM granular token", value = "to_be_manually_added",
-    type = "SecureString", tier = "Advanced"
-  }
   github_enterprise_gpg_passphrase_parameter = {
     name = local.github_enterprise_gpg_passphrase_name, description = "GitHub Enterprise GPG passphase for key", value = "to_be_manually_added",
     type = "SecureString"
@@ -64,7 +59,7 @@ locals {
     type = "SecureString"
   }
   common_parameters_repository = [
-    local.workflow_enterprise_pat_parameter, local.npm_granular_token_parameter, local.github_enterprise_gpg_passphrase_parameter,
+    local.workflow_enterprise_pat_parameter, local.github_enterprise_gpg_passphrase_parameter,
     local.github_enterprise_key_id_parameter, local.github_enterprise_private_key_parameter, local.github_enterprise_public_key_parameter
   ]
   common_parameters_environment = []
