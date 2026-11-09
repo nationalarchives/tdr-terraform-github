@@ -347,6 +347,7 @@ module "github_ecr_scan_repository" {
     MANAGEMENT_ACCOUNT = data.aws_ssm_parameter.mgmt_account_number.value
     SLACK_WEBHOOK      = data.aws_ssm_parameter.slack_webhook_url.value
     WORKFLOW_PAT       = data.aws_ssm_parameter.enterprise_access_token.value
+    JAVA_RUNTIME       = module.global_parameters.lambda_java_runtimes["ecr-scan"]
   }
 }
 
