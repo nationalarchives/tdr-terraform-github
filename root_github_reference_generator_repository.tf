@@ -17,5 +17,6 @@ module "github_da_reference_generator_repository" {
     TDR_MANAGEMENT_ACCOUNT = data.aws_ssm_parameter.mgmt_account_number.value
     TDR_SLACK_WEBHOOK      = data.aws_ssm_parameter.slack_webhook_url.value
     TDR_WORKFLOW_PAT       = data.aws_ssm_parameter.enterprise_access_token.value
+    TDR_JAVA_RUNTIME       = module.global_parameters.lambda_java_runtimes["reference-generator"]
   }
 }

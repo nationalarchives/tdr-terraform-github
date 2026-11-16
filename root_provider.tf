@@ -20,7 +20,6 @@ provider "aws" {
   alias   = "staging"
   region  = "eu-west-2"
   profile = "<Profile configured for account in staging>"
-
 }
 
 provider "aws" {
