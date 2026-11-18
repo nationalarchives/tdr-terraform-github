@@ -31,7 +31,9 @@ module "github_keycloak_user_management_repository" {
     SLACK_FAILURE_WORKFLOW = data.aws_ssm_parameter.slack_failure_workflow.value
     SLACK_SUCCESS_WORKFLOW = data.aws_ssm_parameter.slack_success_workflow.value
     WORKFLOW_PAT           = data.aws_ssm_parameter.enterprise_access_token.value
-    JAVA_RUNTIME           = module.global_parameters.lambda_java_runtimes["keycloak-management"]
+  }
+  actions_variables = {
+    JAVA_RUNTIME = module.global_parameters.lambda_java_runtimes["keycloak-management"]
   }
 }
 
@@ -206,7 +208,9 @@ module "github_db_migration_repository" {
     SONATYPE_USERNAME  = data.aws_ssm_parameter.sonatype_username.value
     SONATYPE_PASSWORD  = data.aws_ssm_parameter.sonatype_password.value
     MANAGEMENT_ACCOUNT = data.aws_ssm_parameter.mgmt_account_number.value
-    JAVA_RUNTIME       = module.global_parameters.lambda_java_runtimes["database-migrations"]
+  }
+  actions_variables = {
+    JAVA_RUNTIME = module.global_parameters.lambda_java_runtimes["database-migrations"]
   }
 }
 
@@ -282,7 +286,9 @@ module "github_api_update_repository" {
     MANAGEMENT_ACCOUNT = data.aws_ssm_parameter.mgmt_account_number.value
     WORKFLOW_PAT       = data.aws_ssm_parameter.enterprise_access_token.value
     SLACK_WEBHOOK      = data.aws_ssm_parameter.slack_webhook_url.value
-    JAVA_RUNTIME       = module.global_parameters.lambda_java_runtimes["api-update-v2"]
+  }
+  actions_variables = {
+    JAVA_RUNTIME = module.global_parameters.lambda_java_runtimes["api-update-v2"]
   }
 }
 
@@ -294,7 +300,9 @@ module "github_create_db_users_repository" {
     MANAGEMENT_ACCOUNT = data.aws_ssm_parameter.mgmt_account_number.value
     WORKFLOW_PAT       = data.aws_ssm_parameter.enterprise_access_token.value
     SLACK_WEBHOOK      = data.aws_ssm_parameter.slack_webhook_url.value
-    JAVA_RUNTIME       = module.global_parameters.lambda_java_runtimes["create-db-user"]
+  }
+  actions_variables = {
+    JAVA_RUNTIME = module.global_parameters.lambda_java_runtimes["create-db-user"]
   }
 }
 
@@ -306,7 +314,9 @@ module "github_export_status_update_repository" {
     MANAGEMENT_ACCOUNT = data.aws_ssm_parameter.mgmt_account_number.value
     WORKFLOW_PAT       = data.aws_ssm_parameter.enterprise_access_token.value
     SLACK_WEBHOOK      = data.aws_ssm_parameter.slack_webhook_url.value
-    JAVA_RUNTIME       = module.global_parameters.lambda_java_runtimes["export-status-updates"]
+  }
+  actions_variables = {
+    JAVA_RUNTIME = module.global_parameters.lambda_java_runtimes["export-status-updates"]
   }
 }
 
@@ -347,7 +357,9 @@ module "github_ecr_scan_repository" {
     MANAGEMENT_ACCOUNT = data.aws_ssm_parameter.mgmt_account_number.value
     SLACK_WEBHOOK      = data.aws_ssm_parameter.slack_webhook_url.value
     WORKFLOW_PAT       = data.aws_ssm_parameter.enterprise_access_token.value
-    JAVA_RUNTIME       = module.global_parameters.lambda_java_runtimes["ecr-scan"]
+  }
+  actions_variables = {
+    JAVA_RUNTIME = module.global_parameters.lambda_java_runtimes["ecr-scan"]
   }
 }
 
@@ -359,7 +371,9 @@ module "github_notifications_repository" {
     MANAGEMENT_ACCOUNT = data.aws_ssm_parameter.mgmt_account_number.value
     SLACK_WEBHOOK      = data.aws_ssm_parameter.slack_webhook_url.value
     WORKFLOW_PAT       = data.aws_ssm_parameter.enterprise_access_token.value
-    JAVA_RUNTIME       = module.global_parameters.lambda_java_runtimes["notification-service"]
+  }
+  actions_variables = {
+    JAVA_RUNTIME = module.global_parameters.lambda_java_runtimes["notification-service"]
   }
 }
 
@@ -403,7 +417,9 @@ module "github_rotate_keycloak_secrets_repository" {
     MANAGEMENT_ACCOUNT = data.aws_ssm_parameter.mgmt_account_number.value
     SLACK_WEBHOOK      = data.aws_ssm_parameter.slack_webhook_url.value
     WORKFLOW_PAT       = data.aws_ssm_parameter.enterprise_access_token.value
-    JAVA_RUNTIME       = module.global_parameters.lambda_java_runtimes["keycloak-rotate-secret"]
+  }
+  actions_variables = {
+    JAVA_RUNTIME = module.global_parameters.lambda_java_runtimes["keycloak-rotate-secret"]
   }
 }
 
@@ -464,7 +480,9 @@ module "github_redacted_files_repository" {
     MANAGEMENT_ACCOUNT = data.aws_ssm_parameter.mgmt_account_number.value
     SLACK_WEBHOOK      = data.aws_ssm_parameter.slack_webhook_url.value
     WORKFLOW_PAT       = data.aws_ssm_parameter.enterprise_access_token.value
-    JAVA_RUNTIME       = module.global_parameters.lambda_java_runtimes["redacted-files"]
+  }
+  actions_variables = {
+    JAVA_RUNTIME = module.global_parameters.lambda_java_runtimes["redacted-files"]
   }
 }
 
@@ -476,7 +494,9 @@ module "github_statuses_repository" {
     MANAGEMENT_ACCOUNT = data.aws_ssm_parameter.mgmt_account_number.value
     SLACK_WEBHOOK      = data.aws_ssm_parameter.slack_webhook_url.value
     WORKFLOW_PAT       = data.aws_ssm_parameter.enterprise_access_token.value
-    JAVA_RUNTIME       = module.global_parameters.lambda_java_runtimes["statuses"]
+  }
+  actions_variables = {
+    JAVA_RUNTIME = module.global_parameters.lambda_java_runtimes["statuses"]
   }
 }
 
@@ -520,7 +540,9 @@ module "github_draft_metadata_validator_repository" {
     MANAGEMENT_ACCOUNT = data.aws_ssm_parameter.mgmt_account_number.value
     WORKFLOW_PAT       = data.aws_ssm_parameter.enterprise_access_token.value
     SLACK_WEBHOOK      = data.aws_ssm_parameter.slack_webhook_url.value
-    JAVA_RUNTIME       = module.global_parameters.lambda_java_runtimes["draft-metadata-validator"]
+  }
+  actions_variables = {
+    JAVA_RUNTIME = module.global_parameters.lambda_java_runtimes["draft-metadata-validator"]
   }
 }
 
@@ -557,7 +579,9 @@ module "github_aggregate_processing_repository" {
     MANAGEMENT_ACCOUNT = data.aws_ssm_parameter.mgmt_account_number.value
     SLACK_WEBHOOK      = data.aws_ssm_parameter.slack_webhook_url.value
     WORKFLOW_PAT       = data.aws_ssm_parameter.enterprise_access_token.value
-    JAVA_RUNTIME       = module.global_parameters.lambda_java_runtimes["aggregate-processing"]
+  }
+  actions_variables = {
+    JAVA_RUNTIME = module.global_parameters.lambda_java_runtimes["aggregate-processing"]
   }
 }
 
@@ -569,7 +593,9 @@ module "github_external_event_handling_repository" {
     MANAGEMENT_ACCOUNT = data.aws_ssm_parameter.mgmt_account_number.value
     SLACK_WEBHOOK      = data.aws_ssm_parameter.slack_webhook_url.value
     WORKFLOW_PAT       = data.aws_ssm_parameter.enterprise_access_token.value
-    JAVA_RUNTIME       = module.global_parameters.lambda_java_runtimes["external-event-handling"]
+  }
+  actions_variables = {
+    JAVA_RUNTIME = module.global_parameters.lambda_java_runtimes["external-event-handling"]
   }
 }
 
@@ -609,6 +635,8 @@ module "github_file_checks_repository" {
     WORKFLOW_PAT       = data.aws_ssm_parameter.enterprise_access_token.value
     GPG_PASSPHRASE     = data.aws_ssm_parameter.enterprise_gpg_passphrase.value
     GPG_PRIVATE_KEY    = data.aws_ssm_parameter.enterprise_gpg_private_key.value
-    JAVA_RUNTIME       = module.global_parameters.lambda_java_runtimes["file-checks"]
+  }
+  actions_variables = {
+    JAVA_RUNTIME = module.global_parameters.lambda_java_runtimes["file-checks"]
   }
 }
